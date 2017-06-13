@@ -16,9 +16,9 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'junegunn/fzf'
 Plugin 'tell-k/vim-autopep8'
+Plugin 'sbdchd/neoformat'
 
 call vundle#end()            " required
-filetype plugin indent on    " required
 
 filetype plugin indent on
 syntax on
@@ -83,9 +83,9 @@ nnoremap <Leader>28 :28b<CR>
 nnoremap <Leader>29 :29b<CR>
 nnoremap <Leader>30 :30b<CR>
 
-"C-F Paste New Line"
-inoremap <Leader>p <C-R>"
-
+augroup filetypedetect
+    au BufRead,BufNewFile *.eyaml set filetype=yaml
+augroup END
 
 " It's useful to show the buffer number in the status line.
 set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
@@ -108,6 +108,12 @@ let g:syntastic_warning_symbol = '⚠️'
 let g:syntastic_style_warning_symbol = '💩'
 
 let g:jsx_ext_required = 0
+
+" Prettier on save
+autocmd BufWritePre *.js Neoformat
+autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --tab-width\ 4
+" Use formatprg when available
+let g:neoformat_try_formatprg = 1
 
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
