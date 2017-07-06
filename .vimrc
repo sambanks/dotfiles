@@ -17,6 +17,7 @@ Plugin 'fholgado/minibufexpl.vim'
 Plugin 'junegunn/fzf'
 Plugin 'tell-k/vim-autopep8'
 Plugin 'sbdchd/neoformat'
+Plugin 'PProvost/vim-ps1'
 
 call vundle#end()            " required
 
