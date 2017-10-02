@@ -19,3 +19,4 @@ local l=$1
 }
 
 export PATH="$PATH:/home/sbanks/.yarn/bin"
+source <(kubectl completion bash)
