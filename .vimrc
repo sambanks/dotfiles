@@ -18,6 +18,7 @@ Plugin 'junegunn/fzf'
 Plugin 'tell-k/vim-autopep8'
 Plugin 'sbdchd/neoformat'
 Plugin 'PProvost/vim-ps1'
+Plugin 'scrooloose/nerdcommenter'
 
 call vundle#end()            " required
 
@@ -31,8 +32,6 @@ set autoindent
 set ignorecase
 set smartcase
 set bg=dark
-
-:syntax on
 
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
@@ -102,13 +101,19 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint']
+let g:jsx_ext_required = 0
 
 let g:syntastic_error_symbol = '❌'
 let g:syntastic_style_error_symbol = '⁉️'
 let g:syntastic_warning_symbol = '⚠️'
 let g:syntastic_style_warning_symbol = '💩'
 
-let g:jsx_ext_required = 0
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
+
+
 
 " Prettier on save
 autocmd BufWritePre *.js Neoformat
@@ -116,13 +121,11 @@ autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --tab-width\ 4
 " Use formatprg when available
 let g:neoformat_try_formatprg = 1
 
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
-
-"Copy to System ClipBoard"
-set clipboard=unnamedplus
-
 " Vimux run command"
 map <Leader>vp :VimuxPromptCommand<CR>
+
+"Check for ES6 Unused Imports"
+nnoremap <leader>ji :w<CR>:call clearmatches()<CR>:let cmd = system('unused -v true ' . expand('%'))<CR>:exec cmd<CR>
+
+"NetRW Nicer View"
+"let g:netrw_liststyle = 3
