@@ -8,9 +8,6 @@
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
-case $- in *i*)
-    [ -z "$TMUX" ] && exec tmux
-esac
 
 genpasswd() { 
 local l=$1

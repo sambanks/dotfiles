@@ -19,6 +19,8 @@ Plugin 'tell-k/vim-autopep8'
 Plugin 'sbdchd/neoformat'
 Plugin 'PProvost/vim-ps1'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()            " required
 
