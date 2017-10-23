@@ -21,6 +21,7 @@ Plugin 'PProvost/vim-ps1'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'vim-airline/vim-airline'
 
 call vundle#end()            " required
 
@@ -129,5 +130,3 @@ map <Leader>vp :VimuxPromptCommand<CR>
 "Check for ES6 Unused Imports"
 nnoremap <leader>ji :w<CR>:call clearmatches()<CR>:let cmd = system('unused -v true ' . expand('%'))<CR>:exec cmd<CR>
 
-"NetRW Nicer View"
-"let g:netrw_liststyle = 3
