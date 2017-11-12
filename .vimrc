@@ -35,6 +35,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'nvie/vim-flake8'
+Plugin 'majutsushi/tagbar'
 call vundle#end()            " required
 
 " ** JS **
@@ -93,6 +94,8 @@ noremap <C-H>     <C-W>h
 noremap <C-L>     <C-W>l
 " Vimux run command"
 map <Leader>vp :VimuxPromptCommand<CR>
+" Toggle Tagbar "
+map <Leader>t :TagbarToggle<CR>
 
 " ** MiniBuffExplorer **
 let g:miniBufExplMapWindowNavVim = 1
