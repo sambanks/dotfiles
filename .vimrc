@@ -54,6 +54,8 @@ let g:jsx_ext_required = 0
 autocmd BufWritePost *.py call Flake8()
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 let g:flake8_show_in_gutter=1
+"Disable import-error for AP wrappers
+let g:syntastic_python_pylint_post_args='--disable=import-error'
 
 " ** RUBY (Puppet) **
 let g:syntastic_eruby_ruby_quiet_messages =
@@ -85,6 +87,15 @@ highlight link SyntasticStyleWarningSign SignColumn
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+" ** AIRLINE **
+" Cut out all the plugins I don't want
+let g:airline#extensions#hunks#enabled = 0
+" Cut out sections I don't want
+let g:airline_section_a = ''
+let g:airline#extensions#default#layout = [
+  \ [ 'a', 'b', 'c' ], [ 'x', 'z', 'error', 'warning' ]
+  \ ]
 
 " ** Keyboard Mappings **
 " Nav splits
