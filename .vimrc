@@ -3,6 +3,9 @@ set nocompatible
 filetype plugin indent on
 syntax on
 set autoread
+set nobackup
+set nowritebackup
+set noswapfile
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -51,7 +54,6 @@ let g:jsx_ext_required = 0
 
 " ** PYTHON **
 "Run Flake8 Python Linter"
-autocmd BufWritePost *.py call Flake8()
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 let g:flake8_show_in_gutter=1
 "Disable import-error for AP wrappers
@@ -89,13 +91,17 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " ** AIRLINE **
-" Cut out all the plugins I don't want
-let g:airline#extensions#hunks#enabled = 0
+" Only load extensions I want
+let g:airline_extensions = [
+  \ 'branch', 'syntastic'
+  \ ]
 " Cut out sections I don't want
 let g:airline_section_a = ''
 let g:airline#extensions#default#layout = [
-  \ [ 'a', 'b', 'c' ], [ 'x', 'z', 'error', 'warning' ]
+  \ [ 'a', 'b', 'c' ], [ 'z', 'error', 'warning' ]
   \ ]
+" For speed
+let g:airline_highlighting_cache = 0
 
 " ** Keyboard Mappings **
 " Nav splits
