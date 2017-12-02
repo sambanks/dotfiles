@@ -13,6 +13,7 @@ set autoindent
 set ignorecase
 set smartcase
 set bg=dark
+set relativenumber
 
 " ** Vundle **
 " set the runtime path to include Vundle and initialize
