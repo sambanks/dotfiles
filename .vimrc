@@ -16,6 +16,7 @@ set bg=dark
 set relativenumber
 set foldmethod=indent
 set foldlevel=99
+set textwidth=79
 
 " ** Vundle **
 " set the runtime path to include Vundle and initialize
