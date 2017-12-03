@@ -14,6 +14,8 @@ set ignorecase
 set smartcase
 set bg=dark
 set relativenumber
+set foldmethod=indent
+set foldlevel=99
 
 " ** Vundle **
 " set the runtime path to include Vundle and initialize
@@ -40,6 +42,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'nvie/vim-flake8'
 Plugin 'majutsushi/tagbar'
+Plugin 'tmhedberg/SimpylFold'
+
 call vundle#end()            " required
 
 " ** JS **
@@ -114,6 +118,8 @@ noremap <C-L>     <C-W>l
 map <Leader>vp :VimuxPromptCommand<CR>
 " Toggle Tagbar "
 map <Leader>t :TagbarToggle<CR>
+" Enable folding with the spacebar
+nnoremap <space> za
 
 " ** MiniBuffExplorer **
 let g:miniBufExplMapWindowNavVim = 1
