@@ -44,7 +44,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'nvie/vim-flake8'
 Plugin 'majutsushi/tagbar'
 Plugin 'tmhedberg/SimpylFold'
-Plugin 'lepture/vim-jinja'
+Plugin 'pearofducks/ansible-vim'
 
 call vundle#end()            " required
 
