@@ -36,7 +36,6 @@ Plugin 'fholgado/minibufexpl.vim'
 Plugin 'junegunn/fzf'
 Plugin 'tell-k/vim-autopep8'
 Plugin 'sbdchd/neoformat'
-Plugin 'PProvost/vim-ps1'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
@@ -44,7 +43,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'nvie/vim-flake8'
 Plugin 'majutsushi/tagbar'
 Plugin 'tmhedberg/SimpylFold'
-Plugin 'pearofducks/ansible-vim'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'lepture/vim-jinja'
 
 call vundle#end()            " required
 
@@ -76,6 +76,12 @@ autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 augroup filetypedetect
     au BufRead,BufNewFile *.eyaml set filetype=yaml
 augroup END
+autocmd FileType yaml setlocal ts=2 sw=2
+
+" ** Ansible **
+" Detect Ansible Files
+au BufRead,BufNewFile */ansible/*.yaml set filetype=ansible
+au BufRead,BufNewFile *.j2 set filetype=jinja
 
 " ** SYNTASTIC **
 let g:syntastic_always_populate_loc_list = 1
