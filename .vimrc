@@ -82,6 +82,8 @@ autocmd FileType yaml setlocal ts=2 sw=2
 " Detect Ansible Files
 au BufRead,BufNewFile */ansible/*.yaml set filetype=ansible
 au BufRead,BufNewFile *.j2 set filetype=jinja
+autocmd FileType ansible setlocal ts=2 sw=2
+autocmd FileType jinja setlocal ts=2 sw=2
 
 " ** SYNTASTIC **
 let g:syntastic_always_populate_loc_list = 1
