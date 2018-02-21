@@ -16,7 +16,6 @@ set bg=dark
 set relativenumber
 set foldmethod=indent
 set foldlevel=99
-set textwidth=79
 
 " ** Vundle **
 " set the runtime path to include Vundle and initialize
@@ -29,10 +28,10 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'isRuslan/vim-es6'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'mxw/vim-jsx'
-Plugin 'suan/vim-instant-markdown'
+Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'benmills/vimux'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'fholgado/minibufexpl.vim'
+Plugin 'bling/vim-bufferline'
 Plugin 'junegunn/fzf'
 Plugin 'tell-k/vim-autopep8'
 Plugin 'sbdchd/neoformat'
@@ -102,6 +101,10 @@ augroup filetype_ansible
     au FileType jinja setlocal ts=2 sw=2
 augroup END
 
+" ** Markdown **
+let vim_markdown_preview_use_xdg_open=1
+let vim_markdown_preview_github=1
+
 " ** SYNTASTIC **
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5
@@ -124,7 +127,7 @@ set statusline+=%*
 
 " ** AIRLINE **
 " Only load extensions I want
-let g:airline_extensions = [
+let g:airline_extensions = [ 
   \ 'branch', 'syntastic'
   \ ]
 " Cut out sections I don't want
@@ -132,6 +135,8 @@ let g:airline_section_a = ''
 let g:airline#extensions#default#layout = [
   \ [ 'a', 'b', 'c' ], [ 'z', 'error', 'warning' ]
   \ ]
+" Buffer extension
+let g:airline#extensions#bufferline#enabled = 1
 " For speed
 let g:airline_highlighting_cache = 0
 
@@ -148,9 +153,9 @@ map <Leader>t :TagbarToggle<CR>
 " Enable folding with the spacebar
 nnoremap <space> za
 
-" ** MiniBuffExplorer **
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
-
+" Highlight long lines "
+augroup vimrc_autocmds
+    au!
+    autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
+    autocmd BufEnter * match OverLength /\%74v.*/
+augroup END
