@@ -101,6 +101,13 @@ augroup filetype_ansible
     au FileType jinja setlocal ts=2 sw=2
 augroup END
 
+" ** JSON **
+augroup filetype_json
+    au!
+    au FileType json setlocal ts=2 sw=2
+augroup END
+
+
 " ** Markdown **
 let vim_markdown_preview_use_xdg_open=1
 let vim_markdown_preview_github=1
