@@ -28,7 +28,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'isRuslan/vim-es6'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'mxw/vim-jsx'
-Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'shime/vim-livedown'
 Plugin 'benmills/vimux'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'bling/vim-bufferline'
@@ -37,13 +37,16 @@ Plugin 'tell-k/vim-autopep8'
 Plugin 'sbdchd/neoformat'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'nvie/vim-flake8'
 Plugin 'majutsushi/tagbar'
 Plugin 'tmhedberg/SimpylFold'
-Plugin 'chase/vim-ansible-yaml'
+Plugin 'pearofducks/ansible-vim'
 Plugin 'lepture/vim-jinja'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'takac/vim-spotifysearch'
 
 call vundle#end()            " required
 
@@ -54,7 +57,6 @@ augroup filetype_js
     au BufWritePre *.js Neoformat
     au FileType javascript setlocal formatprg=prettier\ --stdin\ --tab-width\ 4
 augroup END
-
 " Use formatprg when available
 let g:neoformat_try_formatprg = 1
 " Check for ES6 Unused Imports"
@@ -64,7 +66,6 @@ let g:jsx_ext_required = 0
 
 " ** PYTHON **
 "Run Flake8 Python Linter"
-
 augroup filetype_python
     au!
     au FileType python set omnifunc=pythoncomplete#Complete
@@ -82,7 +83,6 @@ augroup filetype_ruby
     au Filetype ruby setlocal ts=2 sw=2 expandtab
 augroup END
 
-
 " ** YAML **
 " Detect eyaml as yaml
 augroup filetype_yaml
@@ -95,9 +95,9 @@ augroup END
 " Detect Ansible Files
 augroup filetype_ansible
     au!
-    au BufRead,BufNewFile */ansible/*.yaml set filetype=ansible
-    au BufRead,BufNewFile */ansible/*.yml set filetype=ansible
-    au BufRead,BufNewFile *.j2 set filetype=jinja
+    au BufRead,BufNewFile */ansible/*.yaml set filetype=yaml.ansible
+    au BufRead,BufNewFile */ansible/*.yml set filetype=yaml.ansible
+    au BufRead,BufNewFile *.j2 set filetype=ruby.jinja2
     au FileType ansible setlocal ts=2 sw=2
     au FileType jinja setlocal ts=2 sw=2
 augroup END
@@ -108,7 +108,6 @@ augroup filetype_json
     au FileType json setlocal ts=2 sw=2
 augroup END
 
-
 " ** Markdown **
 let vim_markdown_preview_use_xdg_open=1
 let vim_markdown_preview_github=1
@@ -118,7 +117,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
+let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_error_symbol = '❌'
 let g:syntastic_style_error_symbol = '⁉️'
@@ -167,3 +166,7 @@ augroup vimrc_autocmds
     autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
     autocmd BufEnter * match OverLength /\%74v.*/
 augroup END
+
+" Solarized pretty "
+set background=dark
+colorscheme solarized
