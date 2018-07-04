@@ -29,8 +29,6 @@ Plugin 'isRuslan/vim-es6'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'mxw/vim-jsx'
 Plugin 'shime/vim-livedown'
-Plugin 'benmills/vimux'
-Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'bling/vim-bufferline'
 Plugin 'junegunn/fzf'
 Plugin 'tell-k/vim-autopep8'
@@ -46,7 +44,6 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'pearofducks/ansible-vim'
 Plugin 'lepture/vim-jinja'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'takac/vim-spotifysearch'
 
 call vundle#end()            " required
 
@@ -109,8 +106,14 @@ augroup filetype_json
 augroup END
 
 " ** Markdown **
-let vim_markdown_preview_use_xdg_open=1
-let vim_markdown_preview_github=1
+augroup filetype_md
+    au!
+    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+    au BufWritePre *.md Neoformat
+    au FileType markdown setlocal formatprg=prettier\ --stdin\ --tab-width\ 4\ --prose-wrap\ always
+augroup END
+
+noremap gp :silent %!/home/sbanks/git/finis/Code/app/venv/bin/prettier\ --stdin\ --tab-width\ 4\ --prose-wrap\ always\ --parser\ markdown<CR>
 
 " ** SYNTASTIC **
 let g:syntastic_always_populate_loc_list = 1
@@ -148,13 +151,6 @@ let g:airline#extensions#bufferline#enabled = 1
 let g:airline_highlighting_cache = 0
 
 " ** Keyboard Mappings **
-" Nav splits
-noremap <C-J>     <C-W>j
-noremap <C-K>     <C-W>k
-noremap <C-H>     <C-W>h
-noremap <C-L>     <C-W>l
-" Vimux run command"
-map <Leader>vp :VimuxPromptCommand<CR>
 " Toggle Tagbar "
 map <Leader>t :TagbarToggle<CR>
 " Enable folding with the spacebar
@@ -164,7 +160,7 @@ nnoremap <space> za
 augroup vimrc_autocmds
     au!
     autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
-    autocmd BufEnter * match OverLength /\%74v.*/
+    autocmd BufEnter * match OverLength /\%82v.*/
 augroup END
 
 " Solarized pretty "
