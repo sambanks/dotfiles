@@ -16,6 +16,8 @@ set bg=dark
 set relativenumber
 set foldmethod=indent
 set foldlevel=99
+set laststatus=2
+set noshowmode
 
 " ** Vundle **
 " set the runtime path to include Vundle and initialize
@@ -26,7 +28,6 @@ Plugin 'VundleVim/Vundle.vim'
 " Install other Plugins
 Plugin 'pangloss/vim-javascript'
 Plugin 'isRuslan/vim-es6'
-Plugin 'vim-syntastic/syntastic'
 Plugin 'mxw/vim-jsx'
 Plugin 'shime/vim-livedown'
 Plugin 'bling/vim-bufferline'
@@ -37,13 +38,14 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'vim-airline/vim-airline'
 Plugin 'nvie/vim-flake8'
 Plugin 'majutsushi/tagbar'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'pearofducks/ansible-vim'
 Plugin 'lepture/vim-jinja'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'itchyny/lightline.vim'
+Plugin 'w0rp/ale'
 
 call vundle#end()            " required
 
@@ -68,12 +70,8 @@ augroup filetype_python
     au FileType python set omnifunc=pythoncomplete#Complete
 augroup END
 let g:flake8_show_in_gutter=1
-"Disable import-error for AP wrappers
-let g:syntastic_python_pylint_post_args='--disable=import-error'
 
 " ** RUBY (Puppet & Vagrant) **
-let g:syntastic_eruby_ruby_quiet_messages =
-    \ {'regex': 'possibly useless use of a variable in void context'}
 augroup filetype_ruby
     au!
     au BufRead,BufNewFile Vagrantfile set filetype=ruby
@@ -115,40 +113,15 @@ augroup END
 
 noremap gp :silent %!/home/sbanks/git/finis/Code/app/venv/bin/prettier\ --stdin\ --tab-width\ 4\ --prose-wrap\ always\ --parser\ markdown<CR>
 
-" ** SYNTASTIC **
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_style_error_symbol = '⁉️'
-let g:syntastic_warning_symbol = '⚠️'
-let g:syntastic_style_warning_symbol = '💩'
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
+
+
 " Add warnings to status bar
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-" ** AIRLINE **
-" Only load extensions I want
-let g:airline_extensions = [ 
-  \ 'branch', 'syntastic'
-  \ ]
-" Cut out sections I don't want
-let g:airline_section_a = ''
-let g:airline#extensions#default#layout = [
-  \ [ 'a', 'b', 'c' ], [ 'z', 'error', 'warning' ]
-  \ ]
-" Buffer extension
-let g:airline#extensions#bufferline#enabled = 1
-" For speed
-let g:airline_highlighting_cache = 0
+" ** Lightline **
+let g:lightline = {'colorscheme': 'solarized'}
 
 " ** Keyboard Mappings **
 " Toggle Tagbar "
