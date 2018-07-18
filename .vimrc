@@ -121,20 +121,22 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " ** Lightline **
-let g:lightline = {'colorscheme': 'solarized'}
+let g:lightline = {
+    \ 'colorscheme': 'solarized',
+    \ 'active': {    
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'fugitive#head'
+    \ },
+    \ }
 
 " ** Keyboard Mappings **
 " Toggle Tagbar "
 map <Leader>t :TagbarToggle<CR>
 " Enable folding with the spacebar
 nnoremap <space> za
-
-" Highlight long lines "
-augroup vimrc_autocmds
-    au!
-    autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
-    autocmd BufEnter * match OverLength /\%82v.*/
-augroup END
 
 " Solarized pretty "
 set background=dark
