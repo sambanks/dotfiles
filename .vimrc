@@ -117,7 +117,6 @@ noremap gp :silent %!/home/sbanks/git/finis/Code/app/venv/bin/prettier\ --stdin\
 
 " Add warnings to status bar
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " ** Lightline **
