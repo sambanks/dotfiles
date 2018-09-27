@@ -46,6 +46,7 @@ Plugin 'lepture/vim-jinja'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'itchyny/lightline.vim'
 Plugin 'w0rp/ale'
+Plugin 'leafgarland/typescript-vim'
 
 call vundle#end()            " required
 
@@ -86,15 +87,26 @@ augroup filetype_yaml
     au FileType yaml setlocal ts=2 sw=2
 augroup END
 
+" ** JINJA **
+" Detect eyaml as yaml
+augroup filetype_yaml
+    au!
+    au BufRead,BufNewFile *.j2 set filetype=ruby.jinja2
+    au FileType yaml setlocal ts=2 sw=2
+augroup END
+
+
+
 " ** Ansible **
 " Detect Ansible Files
 augroup filetype_ansible
     au!
-    au BufRead,BufNewFile */ansible/*.yaml set filetype=yaml.ansible
-    au BufRead,BufNewFile */ansible/*.yml set filetype=yaml.ansible
+    au BufRead,BufNewFile **/ansible/**.yaml set filetype=yaml.ansible
+    au BufRead,BufNewFile **/ansible/**.yml set filetype=yaml.ansible
+    au BufRead,BufNewFile **/ansible/**.j2 set filetype=yaml.ansible
     au BufRead,BufNewFile *.j2 set filetype=ruby.jinja2
-    au FileType ansible setlocal ts=2 sw=2
-    au FileType jinja setlocal ts=2 sw=2
+    au FileType yaml.ansible setlocal ts=2 sw=2
+    au FileType yaml.jinja setlocal ts=2 sw=2
 augroup END
 
 " ** JSON **

@@ -28,3 +28,6 @@ complete -C '/usr/bin/aws_completer' aws
 
 # Add openssl path for python (qutebrowser) ssl support
 export LD_LIBRARY_PATH=/usr/lib/openssl-1.0
+
+export VISUAL=vim
+export EDITOR=vim
