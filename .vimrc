@@ -38,6 +38,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-repeat'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'nvie/vim-flake8'
 Plugin 'majutsushi/tagbar'
@@ -48,7 +49,9 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'itchyny/lightline.vim'
 Plugin 'w0rp/ale'
 Plugin 'leafgarland/typescript-vim'
-
+Plugin 'Quramy/tsuquyomi'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Valloric/YouCompleteMe'
 call vundle#end()            " required
 
 " ** JS **
@@ -64,6 +67,13 @@ let g:neoformat_try_formatprg = 1
 nnoremap <leader>ji :w<CR>:call clearmatches()<CR>:let cmd = system('unused -v true ' . expand('%'))<CR>:exec cmd<CR>
 " Check jsx in js files "
 let g:jsx_ext_required = 0
+
+" ** Typescript **
+augroup filetype_typescript
+    au!
+    au BufRead,BufNewFile *.ts set filetype=typescript
+    au FileType typescript setlocal ts=2 sw=2
+augroup END
 
 " ** PYTHON **
 "Run Flake8 Python Linter"
@@ -95,8 +105,6 @@ augroup filetype_yaml
     au BufRead,BufNewFile *.j2 set filetype=ruby.jinja2
     au FileType yaml setlocal ts=2 sw=2
 augroup END
-
-
 
 " ** Ansible **
 " Detect Ansible Files
