@@ -33,7 +33,6 @@ Plugin 'shime/vim-livedown'
 Plugin 'bling/vim-bufferline'
 Plugin 'junegunn/fzf'
 Plugin 'tell-k/vim-autopep8'
-Plugin 'sbdchd/neoformat'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
@@ -52,17 +51,18 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'prettier/vim-prettier'
 call vundle#end()            " required
 
-" ** JS **
+" Prettier on save
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+
 " Prettier on save
 augroup filetype_js
     au!
-    au BufWritePre *.js Neoformat
-    au FileType javascript setlocal formatprg=prettier\ --stdin\ --tab-width\ 4
+    au FileType javascript setlocal ts=2 sw=2
 augroup END
-" Use formatprg when available
-let g:neoformat_try_formatprg = 1
 " Check for ES6 Unused Imports"
 nnoremap <leader>ji :w<CR>:call clearmatches()<CR>:let cmd = system('unused -v true ' . expand('%'))<CR>:exec cmd<CR>
 " Check jsx in js files "
@@ -128,8 +128,7 @@ augroup END
 augroup filetype_md
     au!
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-    au BufWritePre *.md Neoformat
-    au FileType markdown setlocal formatprg=prettier\ --stdin\ --tab-width\ 4\ --prose-wrap\ always
+    au FileType markdown setlocal
 augroup END
 
 noremap gp :silent %!/home/sbanks/git/finis/Code/app/venv/bin/prettier\ --stdin\ --tab-width\ 4\ --prose-wrap\ always\ --parser\ markdown<CR>
