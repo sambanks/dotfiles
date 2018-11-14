@@ -19,40 +19,41 @@ set foldlevel=99
 set laststatus=2
 set noshowmode
 
-" ** Vundle **
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-" Install other Plugins
-Plugin 'pangloss/vim-javascript'
-Plugin 'isRuslan/vim-es6'
-Plugin 'mxw/vim-jsx'
-Plugin 'shime/vim-livedown'
-Plugin 'bling/vim-bufferline'
-Plugin 'junegunn/fzf'
-Plugin 'tell-k/vim-autopep8'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-vinegar'
-Plugin 'tpope/vim-repeat'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'nvie/vim-flake8'
-Plugin 'majutsushi/tagbar'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'pearofducks/ansible-vim'
-Plugin 'lepture/vim-jinja'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'itchyny/lightline.vim'
-Plugin 'w0rp/ale'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'Quramy/tsuquyomi'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'prettier/vim-prettier'
-call vundle#end()            " required
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/vim-plug'
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+Plug 'pearofducks/ansible-vim', { 'for': 'ansible' }
+Plug 'lepture/vim-jinja', { 'for': ['ruby.jinja2', 'yaml.ansible'] }
+Plug 'tell-k/vim-autopep8', { 'for': 'python' }
+Plug 'nvie/vim-flake8', { 'for': 'python' }
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
+Plug 'Shougo/vimproc.vim', { 'for': 'typescript' }
+Plug 'maralla/completor-typescript', { 'for': 'typescript' }
+Plug 'maralla/completor.vim', { 'for': 'typescript' }
+Plug 'prettier/vim-prettier'
+Plug 'shime/vim-livedown'
+Plug 'bling/vim-bufferline'
+Plug 'junegunn/fzf'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-repeat'
+Plug 'airblade/vim-gitgutter'
+Plug 'majutsushi/tagbar'
+Plug 'tmhedberg/SimpylFold'
+Plug 'altercation/vim-colors-solarized'
+Plug 'itchyny/lightline.vim'
+Plug 'w0rp/ale'
+call plug#end()
 
 " Prettier on save
 let g:prettier#autoformat = 0
@@ -69,6 +70,7 @@ nnoremap <leader>ji :w<CR>:call clearmatches()<CR>:let cmd = system('unused -v t
 let g:jsx_ext_required = 0
 
 " ** Typescript **
+let g:tsuquyomi_disable_quickfix = 1
 augroup filetype_typescript
     au!
     au BufRead,BufNewFile *.ts set filetype=typescript
@@ -131,10 +133,6 @@ augroup filetype_md
     au FileType markdown setlocal
 augroup END
 
-noremap gp :silent %!/home/sbanks/git/finis/Code/app/venv/bin/prettier\ --stdin\ --tab-width\ 4\ --prose-wrap\ always\ --parser\ markdown<CR>
-
-
-
 " Add warnings to status bar
 set statusline+=%#warningmsg#
 set statusline+=%*
@@ -154,8 +152,6 @@ let g:lightline = {
 " ** Keyboard Mappings **
 " Toggle Tagbar "
 map <Leader>t :TagbarToggle<CR>
-" Enable folding with the spacebar
-nnoremap <space> za
 
 " Solarized pretty "
 set background=dark
