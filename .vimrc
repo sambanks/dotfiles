@@ -101,7 +101,6 @@ augroup filetype_yaml
 augroup END
 
 " ** JINJA **
-" Detect eyaml as yaml
 augroup filetype_yaml
     au!
     au BufRead,BufNewFile *.j2 set filetype=ruby.jinja2
