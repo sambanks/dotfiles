@@ -113,8 +113,7 @@ augroup filetype_ansible
     au!
     au BufRead,BufNewFile **/ansible/**.yaml set filetype=yaml.ansible
     au BufRead,BufNewFile **/ansible/**.yml set filetype=yaml.ansible
-    au BufRead,BufNewFile **/ansible/**.j2 set filetype=yaml.ansible
-    au BufRead,BufNewFile *.j2 set filetype=ruby.jinja2
+    au BufRead,BufNewFile **/ansible/**.j2 set filetype=yaml.jinja
     au FileType yaml.ansible setlocal ts=2 sw=2
     au FileType yaml.jinja setlocal ts=2 sw=2
 augroup END
