@@ -16,7 +16,7 @@ local l=$1
 }
 
 # Add personal Bin
-export PATH="$PATH:/home/sbanks/bin
+export PATH="$PATH:/home/sbanks/bin"
 
 #Android studio sdk
 export PATH="$PATH:/home/sbanks/Android/Sdk/platform-tools"
