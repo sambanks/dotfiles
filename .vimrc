@@ -59,11 +59,12 @@ call plug#end()
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 
-" Prettier on save
+" ** Javascript **
 augroup filetype_js
     au!
     au FileType javascript setlocal ts=2 sw=2
 augroup END
+
 " Check for ES6 Unused Imports"
 nnoremap <leader>ji :w<CR>:call clearmatches()<CR>:let cmd = system('unused -v true ' . expand('%'))<CR>:exec cmd<CR>
 " Check jsx in js files "
