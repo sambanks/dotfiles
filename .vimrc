@@ -29,8 +29,6 @@ Plug 'junegunn/vim-plug'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-Plug 'pearofducks/ansible-vim', { 'for': 'ansible' }
-Plug 'lepture/vim-jinja', { 'for': ['ruby.jinja2', 'yaml.ansible'] }
 Plug 'tell-k/vim-autopep8', { 'for': 'python' }
 Plug 'nvie/vim-flake8', { 'for': 'python' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
