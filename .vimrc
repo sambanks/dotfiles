@@ -96,8 +96,10 @@ augroup END
 augroup filetype_eyaml
     au!
     au BufRead,BufNewFile *.eyaml set filetype=yaml
+    au BufRead,BufNewFile *.yaml set filetype=yaml
+    au BufRead,BufNewFile *.yml set filetype=yaml
     au BufRead,BufNewFile *.yml.j2 set filetype=yaml
-    au FileType yaml setlocal ts=2 sw=2
+    au FileType yaml setlocal ts=2 sw=2 expandtab
 augroup END
 
 " ** JSON **
