@@ -18,6 +18,7 @@ set foldmethod=indent
 set foldlevel=99
 set laststatus=2
 set noshowmode
+set noequalalways
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
