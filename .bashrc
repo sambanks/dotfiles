@@ -8,6 +8,8 @@
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
+# Spotify hidpi
+alias spotify="/usr/bin/spotify --force-device-scale-factor=2"
 
 genpasswd() { 
 local l=$1
@@ -29,3 +31,10 @@ export LD_LIBRARY_PATH=/usr/lib/openssl-1.0
 
 export VISUAL=vim
 export EDITOR=vim
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[ -f /home/sbanks/stackchat/git/hybrid-db-s3-storage-test/node_modules/tabtab/.completions/serverless.bash ] && . /home/sbanks/stackchat/git/hybrid-db-s3-storage-test/node_modules/tabtab/.completions/serverless.bash
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[ -f /home/sbanks/stackchat/git/hybrid-db-s3-storage-test/node_modules/tabtab/.completions/sls.bash ] && . /home/sbanks/stackchat/git/hybrid-db-s3-storage-test/node_modules/tabtab/.completions/sls.bash

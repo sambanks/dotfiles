@@ -54,9 +54,10 @@ Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 call plug#end()
 
-" Prettier on save
+" ** Prettier **
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+let g:prettier#quickfix_enabled = 0
 
 " ** Javascript **
 augroup filetype_js
@@ -113,7 +114,6 @@ augroup END
 augroup filetype_md
     au!
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-    au FileType markdown setlocal
 augroup END
 
 " Add warnings to status bar
