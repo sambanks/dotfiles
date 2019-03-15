@@ -128,7 +128,7 @@ endfunction
 
 " Layout
 set statusline=                                 " Clear the statusline for when vimrc is reloaded
-set statusline+=%f\                         " File name
+set statusline+=\ %f\                         " File name
 set statusline+=%=                              " Right align
 set statusline+=%#Underlined#                   " Highlight colour
 set statusline+=%{GitInfo()}             " Git info
