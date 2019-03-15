@@ -26,6 +26,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin('~/.vim/plugged')
+
 Plug 'junegunn/vim-plug'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
@@ -127,13 +128,13 @@ endfunction
 
 " Layout
 set statusline=                                 " Clear the statusline for when vimrc is reloaded
-set statusline+=%-020f\                             " File name
-set statusline+=%#Underlined#                         " Highlight colour
-set statusline+=\ \ %{GitInfo()}\ \             " Git info
+set statusline+=%f\                         " File name
 set statusline+=%=                              " Right align
+set statusline+=%#Underlined#                   " Highlight colour
+set statusline+=\ \ %{GitInfo()}\ \             " Git info
 set statusline+=%#pandocStrikeoutDefinition#    " Highlight colour
 set statusline+=\ \ %l:%c                       " Line and column
-set statusline+=\ [%n]                            " Buffer number
+set statusline+=\ [%n]                          " Buffer number
 
 " ** Keyboard Mappings **
 " Toggle Tagbar "
