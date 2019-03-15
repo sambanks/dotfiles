@@ -134,7 +134,7 @@ set statusline+=%#Underlined#                   " Highlight colour
 set statusline+=%{GitInfo()}             " Git info
 set statusline+=%#pandocStrikeoutDefinition#    " Highlight colour
 set statusline+=\ \ %l:%c                       " Line and column
-set statusline+=\ [%n]                          " Buffer number
+set statusline+=\ [%n]\                         " Buffer number
 
 " ** Keyboard Mappings **
 " Toggle Tagbar "
