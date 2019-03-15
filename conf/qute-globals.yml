@@ -1,0 +1,5 @@
+---
+tabs.background: true
+input.insert_mode.auto_enter: false
+input.insert_mode.auto_leave: false
+input.insert_mode.auto_load: false

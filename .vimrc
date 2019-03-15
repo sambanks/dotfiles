@@ -39,7 +39,6 @@ Plug 'maralla/completor-typescript', { 'for': 'typescript' }
 Plug 'maralla/completor.vim', { 'for': 'typescript' }
 Plug 'prettier/vim-prettier'
 Plug 'shime/vim-livedown'
-Plug 'bling/vim-bufferline'
 Plug 'junegunn/fzf'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
@@ -50,7 +49,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'majutsushi/tagbar'
 Plug 'tmhedberg/SimpylFold'
 Plug 'altercation/vim-colors-solarized'
-Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 call plug#end()
 
@@ -116,21 +114,26 @@ augroup filetype_md
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 augroup END
 
-" Add warnings to status bar
-set statusline+=%#warningmsg#
-set statusline+=%*
 
-" ** Lightline **
-let g:lightline = {
-    \ 'colorscheme': 'solarized',
-    \ 'active': {    
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-    \ },
-    \ 'component_function': {
-    \   'gitbranch': 'fugitive#head'
-    \ },
-    \ }
+" ** Statusline **
+" Git info
+function! GitInfo()
+  let git = fugitive#head()
+  if git != ''
+    return git
+  else
+    return ''
+endfunction
+
+" Layout
+set statusline=                                 " Clear the statusline for when vimrc is reloaded
+set statusline+=%-020f\                             " File name
+set statusline+=%#Underlined#                         " Highlight colour
+set statusline+=\ \ %{GitInfo()}\ \             " Git info
+set statusline+=%=                              " Right align
+set statusline+=%#pandocStrikeoutDefinition#    " Highlight colour
+set statusline+=\ \ %l:%c                       " Line and column
+set statusline+=\ [%n]                            " Buffer number
 
 " ** Keyboard Mappings **
 " Toggle Tagbar "
