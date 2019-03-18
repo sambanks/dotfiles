@@ -128,10 +128,10 @@ endfunction
 
 " Layout
 set statusline=                                 " Clear the statusline for when vimrc is reloaded
-set statusline+=\ %f\                         " File name
+set statusline+=\ %f\                           " File name
 set statusline+=%=                              " Right align
 set statusline+=%#Underlined#                   " Highlight colour
-set statusline+=%{GitInfo()}             " Git info
+set statusline+=%{GitInfo()}                    " Git info
 set statusline+=%#pandocStrikeoutDefinition#    " Highlight colour
 set statusline+=\ \ %l:%c                       " Line and column
 set statusline+=\ [%n]\                         " Buffer number
