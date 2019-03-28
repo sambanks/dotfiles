@@ -115,7 +115,6 @@ augroup filetype_md
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 augroup END
 
-
 " ** Statusline **
 " Git info
 function! GitInfo()
@@ -140,6 +139,13 @@ set statusline+=\ [%n]\                         " Buffer number
 " Toggle Tagbar "
 map <Leader>t :TagbarToggle<CR>
 
+" ** General **
 " Solarized pretty "
 set background=dark
 colorscheme solarized
+
+" ** Highlight long lines "
+augroup vimrc_autocmds
+  autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#111111
+  autocmd BufEnter * match OverLength /\%75v.*/
+augroup END
