@@ -12,13 +12,13 @@ set shiftwidth=4
 set autoindent
 set ignorecase smartcase
 set smartcase
-set bg=dark
 set relativenumber
 set foldmethod=indent
 set foldlevel=99
 set laststatus=2
 set noshowmode
 set noequalalways
+set termguicolors
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -51,6 +51,7 @@ Plug 'majutsushi/tagbar'
 Plug 'tmhedberg/SimpylFold'
 Plug 'altercation/vim-colors-solarized'
 Plug 'w0rp/ale'
+Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
 " ** Prettier **
@@ -129,9 +130,9 @@ endfunction
 set statusline=                                 " Clear the statusline for when vimrc is reloaded
 set statusline+=\ %f\                           " File name
 set statusline+=%=                              " Right align
-set statusline+=%#Underlined#                   " Highlight colour
+set statusline+=%#Keyword#                      " Highlight colour
 set statusline+=%{GitInfo()}                    " Git info
-set statusline+=%#pandocStrikeoutDefinition#    " Highlight colour
+set statusline+=%#Keyword#                      " Highlight colour
 set statusline+=\ \ %l:%c                       " Line and column
 set statusline+=\ [%n]\                         " Buffer number
 
@@ -140,12 +141,5 @@ set statusline+=\ [%n]\                         " Buffer number
 map <Leader>t :TagbarToggle<CR>
 
 " ** General **
-" Solarized pretty "
-set background=dark
-colorscheme solarized
-
-" ** Highlight long lines "
-augroup vimrc_autocmds
-  autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#111111
-  autocmd BufEnter * match OverLength /\%75v.*/
-augroup END
+" Pretty "
+colorscheme nord
