@@ -20,6 +20,9 @@ local l=$1
 # Add personal Bin
 export PATH="$PATH:/home/sbanks/bin"
 
+# Mixbus
+export PATH="$PATH:/opt/mixbus/bin"
+
 #Android studio sdk
 export PATH="$PATH:/home/sbanks/Android/Sdk/platform-tools"
 
