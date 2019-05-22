@@ -23,7 +23,7 @@ theme.bg_normal                                 = "#000000"
 theme.bg_focus                                  = "#000000"
 theme.bg_urgent                                 = "#000000"
 theme.fg_normal                                 = "#aaaaaa"
-theme.fg_focus                                  = "#ff8c00"
+theme.fg_focus                                  = "#9f29c6"
 theme.fg_urgent                                 = "#af1d18"
 theme.fg_minimize                               = "#ffffff"
 theme.border_width                              = 3
@@ -34,13 +34,12 @@ theme.menu_border_width                         = 0
 theme.menu_width                                = 400
 theme.menu_submenu_icon                         = theme.confdir .. "/icons/submenu.png"
 theme.menu_fg_normal                            = "#aaaaaa"
-theme.menu_fg_focus                             = "#ff8c00"
+theme.menu_fg_focus                             = "#9f29c6"
 theme.menu_bg_normal                            = "#050505dd"
 theme.menu_bg_focus                             = "#050505dd"
 theme.widget_temp                               = theme.confdir .. "/icons/temp.png"
 theme.widget_uptime                             = theme.confdir .. "/icons/ac.png"
 theme.widget_cpu                                = theme.confdir .. "/icons/cpu.png"
-theme.widget_weather                            = theme.confdir .. "/icons/dish.png"
 theme.widget_fs                                 = theme.confdir .. "/icons/fs.png"
 theme.widget_mem                                = theme.confdir .. "/icons/mem.png"
 theme.widget_note                               = theme.confdir .. "/icons/note.png"
@@ -95,51 +94,15 @@ local markup = lain.util.markup
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
-local mytextclock = wibox.widget.textclock(markup("#7788af", "%A %d %B ") .. markup("#535f7a", ">") .. markup("#de5e1e", " %H:%M "))
+local mytextclock = wibox.widget.textclock(markup("#9f29c6", "%A %d %B ") .. markup("#9f29c6", " %H:%M "))
 mytextclock.font = theme.font
 
-
--- Weather
-local weathericon = wibox.widget.imagebox(theme.widget_weather)
-theme.weather = lain.widget.weather({
-    city_id = 2643743, -- placeholder (London)
-    notification_preset = { font = "xos4 Terminus 10", fg = theme.fg_normal },
-    weather_na_markup = markup.fontfg(theme.font, "#eca4c4", "N/A "),
-    settings = function()
-        descr = weather_now["weather"][1]["description"]:lower()
-        units = math.floor(weather_now["main"]["temp"])
-        widget:set_markup(markup.fontfg(theme.font, "#eca4c4", descr .. " @ " .. units .. "°C "))
-    end
-})
-
---[[ Mail IMAP check
--- commented because it needs to be set before use
-local mailicon = wibox.widget.imagebox()
-local mail = lain.widget.imap({
-    timeout  = 180,
-    server   = "server",
-    mail     = "mail",
-    password = "keyring get mail",
-    settings = function()
-        if mailcount > 0 then
-            mailicon:set_image(theme.widget_mail)
-            widget:set_markup(markup.fontfg(theme.font, "#cccccc", mailcount .. " "))
-        else
-            widget:set_text("")
-            --mailicon:set_image() -- not working in 4.0
-            mailicon._private.image = nil
-            mailicon:emit_signal("widget::redraw_needed")
-            mailicon:emit_signal("widget::layout_changed")
-        end
-    end
-})
---]]
 
 -- CPU
 local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
 local cpu = lain.widget.cpu({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#e33a6e", cpu_now.usage .. "% "))
+        widget:set_markup(markup.fontfg(theme.font, "#9f29c6", cpu_now.usage .. "% "))
     end
 })
 
@@ -147,7 +110,7 @@ local cpu = lain.widget.cpu({
 local tempicon = wibox.widget.imagebox(theme.widget_temp)
 local temp = lain.widget.temp({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#f1af5f", coretemp_now .. "°C "))
+        widget:set_markup(markup.fontfg(theme.font, "#9f29c6", coretemp_now .. "°C "))
     end
 })
 
@@ -161,7 +124,7 @@ local bat = lain.widget.bat({
             perc = perc .. " plug"
         end
 
-        widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, perc .. " "))
+        widget:set_markup(markup.fontfg(theme.font, "#9f29c6", perc .. " "))
     end
 })
 
@@ -173,7 +136,7 @@ theme.volume = lain.widget.alsa({
             volume_now.level = volume_now.level .. "M"
         end
 
-        widget:set_markup(markup.fontfg(theme.font, "#7493d2", volume_now.level .. "% "))
+        widget:set_markup(markup.fontfg(theme.font, "#9f29c6", volume_now.level .. "% "))
     end
 })
 
@@ -183,14 +146,8 @@ local netdowninfo = wibox.widget.textbox()
 local netupicon = wibox.widget.imagebox(theme.widget_netup)
 local netupinfo = lain.widget.net({
     settings = function()
-        if iface ~= "network off" and
-           string.match(theme.weather.widget.text, "N/A")
-        then
-            theme.weather.update()
-        end
-
-        widget:set_markup(markup.fontfg(theme.font, "#e54c62", net_now.sent .. " "))
-        netdowninfo:set_markup(markup.fontfg(theme.font, "#87af5f", net_now.received .. " "))
+        widget:set_markup(markup.fontfg(theme.font, "#9f29c6", net_now.sent .. " "))
+        netdowninfo:set_markup(markup.fontfg(theme.font, "#9f29c6", net_now.received .. " "))
     end
 })
 
@@ -198,7 +155,7 @@ local netupinfo = lain.widget.net({
 local memicon = wibox.widget.imagebox(theme.widget_mem)
 local memory = lain.widget.mem({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#e0da37", mem_now.used .. "M "))
+        widget:set_markup(markup.fontfg(theme.font, "#9f29c6", mem_now.used .. "M "))
     end
 })
 
@@ -226,7 +183,7 @@ theme.mpd = lain.widget.mpd({
             mpdicon:emit_signal("widget::redraw_needed")
             mpdicon:emit_signal("widget::layout_changed")
         end
-        widget:set_markup(markup.fontfg(theme.font, "#e54c62", artist) .. markup.fontfg(theme.font, "#b2b2b2", title))
+        widget:set_markup(markup.fontfg(theme.font, "#9f29c6", artist) .. markup.fontfg(theme.font, "#9f29c6", title))
     end
 })
 
