@@ -153,6 +153,8 @@ set statusline+=\ [%n]\                         " Buffer number
 map <Leader>t :TagbarToggle<CR>
 
 " ** General **
+" Remove trailing whitespace "
+autocmd BufWritePre * %s/\s\+$//e
 " Pretty "
 colorscheme nord
 
