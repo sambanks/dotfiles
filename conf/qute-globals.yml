@@ -1,8 +1,10 @@
 ---
-tabs.background: true
+content.pdfjs: true
 input.insert_mode.auto_enter: false
 input.insert_mode.auto_leave: false
 input.insert_mode.auto_load: false
+tabs.background: true
 url.default_page: https://google.com.au/
 url.searchengines: {"DEFAULT": "https://google.com.au/?q={}"}
 url.start_pages: https://google.com.au/
+input.insert_mode.leave_on_load: false

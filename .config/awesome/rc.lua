@@ -373,15 +373,15 @@ globalkeys = my_table.join(
         end,
         {description = "toggle mute", group = "hotkeys"}),
     -- Multimedia controls
-    awful.key({ modkey, "Shift"  }, "l",
+    awful.key({ "Control", "Shift"  }, "l",
         function ()
             awful.util.spawn("playerctl next &", false)
         end),
-    awful.key({ modkey, "Shift" }, "h",
+    awful.key({ "Control", "Shift" }, "h",
         function ()
             awful.util.spawn("playerctl previous &", false)
         end),
-    awful.key({ modkey, "Shift" }, "space",
+    awful.key({ "Control", "Shift" }, "space",
         function ()
             awful.util.spawn("playerctl play-pause &", false)
         end),

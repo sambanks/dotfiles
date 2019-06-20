@@ -38,3 +38,12 @@ export EDITOR=vim
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [ -f /home/sbanks/stackchat/git/hybrid-db-s3-storage-test/node_modules/tabtab/.completions/sls.bash ] && . /home/sbanks/stackchat/git/hybrid-db-s3-storage-test/node_modules/tabtab/.completions/sls.bash
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/sbanks/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home/sbanks/Downloads/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/sbanks/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/home/sbanks/Downloads/google-cloud-sdk/completion.bash.inc'; fi
+
+# The next line loads swingBot compute engine credentials
+export GOOGLE_APPLICATION_CREDENTIALS="/home/sbanks/.gcoud/swingBotCompute.js"
