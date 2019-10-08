@@ -152,6 +152,9 @@ set statusline+=\ [%n]\                         " Buffer number
 " ** Keyboard Mappings **
 " Toggle Tagbar "
 map <Leader>t :TagbarToggle<CR>
+" Cycle through git history without jumping
+map <Leader>n :cn<CR> <Bar> <C-o>
+map <Leader>p :cp<CR> <Bar> <C-o>
 
 " ** General **
 " Remove trailing whitespace "
