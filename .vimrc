@@ -149,12 +149,23 @@ set statusline+=%#Keyword#                      " Highlight colour
 set statusline+=\ \ %l:%c                       " Line and column
 set statusline+=\ [%n]\                         " Buffer number
 
+" Cycle through git history without jumping
+function GitScroll(direction)
+    let l:save_pos = getpos('.')
+    if a:direction == 'n'
+        :cnext
+    elseif a:direction == 'p'
+        :cprevious
+    endif
+    call setpos(".", save_pos)
+endfunction
+
 " ** Keyboard Mappings **
 " Toggle Tagbar "
 map <Leader>t :TagbarToggle<CR>
 " Cycle through git history without jumping
-map <Leader>n :cn<CR> <Bar> <C-o>
-map <Leader>p :cp<CR> <Bar> <C-o>
+map <Leader>n :call GitScroll('n')<CR>
+map <Leader>p :call GitScroll('p')<CR>
 
 " ** General **
 " Remove trailing whitespace "
