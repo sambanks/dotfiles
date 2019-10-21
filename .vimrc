@@ -170,6 +170,8 @@ map <Leader>p :call GitScroll('p')<CR>
 " ** General **
 " Remove trailing whitespace "
 autocmd BufWritePre * %s/\s\+$//e
+" Space before comments
+let NERDSpaceDelims=1
 " Pretty "
 colorscheme nord
 
