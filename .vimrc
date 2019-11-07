@@ -19,6 +19,7 @@ set laststatus=2
 set noshowmode
 set noequalalways
 set termguicolors
+set autochdir
 
 " ** Vim Plug **
 if empty(glob('~/.vim/autoload/plug.vim'))
