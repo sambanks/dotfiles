@@ -53,11 +53,14 @@ Plug 'majutsushi/tagbar'
 Plug 'tmhedberg/SimpylFold'
 Plug 'w0rp/ale'
 Plug 'arcticicestudio/nord-vim'
+Plug 'xolox/vim-lua-ftplugin'
+Plug 'xolox/vim-misc'
+Plug 'frazrepo/vim-rainbow'
 call plug#end()
 
 " ** Prettier **
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yml,*.yaml,*.html PrettierAsync
 let g:prettier#quickfix_enabled = 0
 
 " ** Javascript **
@@ -175,6 +178,8 @@ autocmd BufWritePre * %s/\s\+$//e
 let NERDSpaceDelims=1
 " Pretty "
 colorscheme nord
+" Rainbow Brackets "
+let g:rainbow_active = 1
 
 " Ale "
 let g:ale_echo_msg_error_str = 'E'
