@@ -130,7 +130,8 @@ augroup END
 " ** Markdown **
 augroup filetype_md
     au!
-    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+    au BufNewFile,BufReadPost *.md set filetype=markdown
+    au BufNewFile,BufReadPost *.mdx set filetype=markdown
 augroup END
 
 " ** Statusline **
