@@ -71,17 +71,6 @@ button {
 }
 
 
-entry {
-	font:            				"SF Pro Text Regular 12";
-	background-color:               @background;
-	placeholder-color:          	@foreground;
-	placeholder:                	"Web Search";
-	blink:		                    true;
-	expand:         				true;
-	text-color:						@foreground;
-	vertical-align: 				0.5;
-}
-
 entry-wrapper {
     orientation:                    horizontal;
     vertical-align:                 0.5;

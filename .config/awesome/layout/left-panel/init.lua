@@ -5,7 +5,7 @@ local apps = require('configuration.apps')
 local dpi = require('beautiful').xresources.apply_dpi
 
 local left_panel = function(screen)
-	
+
 	local action_bar_width = dpi(45)
 	local panel_content_width = dpi(350)
 
@@ -18,7 +18,7 @@ local left_panel = function(screen)
 		x = screen.geometry.x,
 		y = screen.geometry.y,
 		ontop = true,
-		bg = beautiful.background,
+		-- bg = beautiful.background,
 		fg = beautiful.fg_normal
 	}
 
@@ -33,7 +33,7 @@ local left_panel = function(screen)
 	local backdrop = wibox {
 		ontop = true,
 		screen = screen,
-		bg = beautiful.transparent,
+		-- bg = beautiful.transparent,
 		type = 'utility',
 		x = screen.geometry.x,
 		y = screen.geometry.y,
@@ -52,7 +52,7 @@ local left_panel = function(screen)
 				panel:toggle()
 			end
 		)
-		
+
 		-- Hide panel content if rofi web search is opened
 		panel:get_children_by_id('panel_content')[1].visible = false
 	end
@@ -107,7 +107,7 @@ local left_panel = function(screen)
 		nil,
 		{
 			id = 'panel_content',
-			bg = beautiful.transparent,
+			-- bg = beautiful.transparent,
 			widget = wibox.container.background,
 			visible = false,
 			forced_width = panel_content_width,

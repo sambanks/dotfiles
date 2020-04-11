@@ -8,9 +8,9 @@ return {
 
 	-- The default applications in keybindings and widgets
 	default = {
-		terminal 										= 'kitty',                                  -- Terminal Emulator
-		text_editor 									= 'subl3',                                  -- GUI Text Editor
-		web_browser 									= 'firefox',                                -- Web browser
+		terminal 										= 'xfce4-terminal',                                  -- Terminal Emulator
+		text_editor 									= 'gvim',                                  -- GUI Text Editor
+		web_browser 									= 'mybrowser',                                -- Web browser
 		file_manager 									= 'dolphin',                                -- GUI File manager
 		network_manager 								= 'nm-connection-editor',					-- Network manager
 		bluetooth_manager 								= 'blueman-manager',						-- Bluetooth manager

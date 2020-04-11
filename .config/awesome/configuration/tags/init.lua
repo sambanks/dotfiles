@@ -8,49 +8,26 @@ local tags = {
 	{
 		icon = icons.terminal,
 		type = 'terminal',
-		default_app = 'kitty',
 		screen = 1
 	},
 	{
 		icon = icons.web_browser,
 		type = 'chrome',
-		default_app = 'firefox',
 		screen = 1
 	},
 	{
 		icon = icons.text_editor,
 		type = 'code',
-		default_app = 'subl3',
 		screen = 1
 	},
 	{
 		icon = icons.file_manager,
 		type = 'files',
-		default_app = 'nemo',
 		screen = 1
 	},
 	{
 		icon = icons.multimedia,
 		type = 'music',
-		default_app = 'vlc',
-		screen = 1
-	},
-	{
-		icon = icons.games,
-		type = 'game',
-		default_app = 'supertuxkart',
-		screen = 1
-	},
-	{
-		icon = icons.graphics,
-		type = 'art',
-		default_app = 'gimp-2.10',
-		screen = 1
-	},
-	{
-		icon = icons.sandbox,
-		type = 'virtualbox',
-		default_app = 'virtualbox',
 		screen = 1
 	},
 	{
@@ -59,12 +36,6 @@ local tags = {
 		default_app = '',
 		screen = 1
 	}
-	-- {
-	--   icon = icons.social,
-	--   type = 'social',
-	--   default_app = 'discord',
-	--   screen = 1
-	-- }
 }
 
 

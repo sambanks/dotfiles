@@ -5,7 +5,7 @@ local dir = os.getenv('HOME') .. '/.config/awesome/theme/icons/'
 return {
 
 	-- Action Bar
-	web_browser 		= dir .. 'tag-list/' .. 'web-browser.svg',
+	web_browser 		= dir .. 'tag-list/' .. 'qute.svg',
 	text_editor			= dir .. 'tag-list/' .. 'text-editor.svg',
 	social				= dir .. 'tag-list/' .. 'social.svg',
 	file_manager 		= dir .. 'tag-list/' .. 'file-manager.svg',
