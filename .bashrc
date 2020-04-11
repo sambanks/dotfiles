@@ -18,7 +18,7 @@ local l=$1
 }
 
 # Add personal Bin
-export PATH="/home/sbanks/binu:$PATH"
+export PATH="/home/sbanks/bin:$PATH"
 
 #Android studio sdk
 export PATH="$PATH:/home/sbanks/Android/Sdk/platform-tools"
@@ -47,3 +47,7 @@ if [ -f '/home/sbanks/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/sbanks/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/home/sbanks/Downloads/google-cloud-sdk/completion.bash.inc'; fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

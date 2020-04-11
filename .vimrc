@@ -55,7 +55,7 @@ Plug 'w0rp/ale'
 Plug 'arcticicestudio/nord-vim'
 Plug 'xolox/vim-lua-ftplugin'
 Plug 'xolox/vim-misc'
-Plug 'frazrepo/vim-rainbow'
+Plug 'jxnblk/vim-mdx-js'
 call plug#end()
 
 " ** Prettier **
