@@ -8,7 +8,7 @@ return {
 
 	-- The default applications in keybindings and widgets
 	default = {
-		terminal 										= 'xfce4-terminal',                                  -- Terminal Emulator
+		terminal 										= 'kitty',                                  -- Terminal Emulator
 		text_editor 									= 'gvim',                                  -- GUI Text Editor
 		web_browser 									= 'mybrowser',                                -- Web browser
 		file_manager 									= 'dolphin',                                -- GUI File manager
