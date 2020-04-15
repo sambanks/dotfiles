@@ -245,7 +245,14 @@ local clientKeys =
 			end
 		end,
 		{description = 'decrease floating client size horizontally by 10 px right', group = 'client'}
-	)
+	),
+    awful.key({ modkey,           }, "m",
+        function (c)
+            c.maximized = not c.maximized
+            c:raise()
+        end ,
+        {description = "maximize", group = "client"}
+    )
 )
 
 return clientKeys

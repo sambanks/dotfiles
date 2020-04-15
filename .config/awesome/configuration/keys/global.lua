@@ -292,7 +292,7 @@ local globalKeys = awful.util.table.join(
         end,
         {description = "run prompt", group = "launcher"}),
     awful.key(
-        {modkey},
+        {modkey, "Shift"},
         'm',
         function()
             if awful.screen.focused().musicpop then
