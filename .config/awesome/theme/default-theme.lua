@@ -143,7 +143,7 @@ local awesome_overrides = function(theme)
 
 	-- Decorations
 	theme.client_radius = dpi(9)
-	theme.useless_gap = dpi(4)
+    theme.useless_gap = dpi(4)
 
 	-- Menu
 	theme.menu_font = "SF Pro Text Regular 11"
