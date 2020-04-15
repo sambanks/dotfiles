@@ -115,8 +115,14 @@ local globalKeys = awful.util.table.join(
         awful.tag.history.restore,
         {description = 'alternate between current and previous tag', group = 'tag'}
     ),
+    awful.key(
+        {modkey,           },
+        'o',
+        awful.client.movetoscreen,
+        {description = "move to screen", group = "client"}
+    ),
     awful.key({ modkey, "Control" },
-        "w",
+        'w',
         function ()
             -- tag_view_nonempty(-1)
             local focused = awful.screen.focused()
@@ -130,7 +136,7 @@ local globalKeys = awful.util.table.join(
         {description = "view previous non-empty tag", group = "tag"}
     ),
     awful.key({ modkey, "Control" },
-        "s",
+        's',
         function ()
             -- tag_view_nonempty(1)
             local focused =  awful.screen.focused()
@@ -281,7 +287,7 @@ local globalKeys = awful.util.table.join(
     awful.key(
         { modkey },
         'r',
-        function ()
+        function()
             awful.screen.focused().mypromptbox:run()
         end,
         {description = "run prompt", group = "launcher"}),
