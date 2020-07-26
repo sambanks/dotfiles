@@ -33,13 +33,10 @@ Plug 'junegunn/vim-plug'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-Plug 'tell-k/vim-autopep8', { 'for': 'python' }
-Plug 'nvie/vim-flake8', { 'for': 'python' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 Plug 'Shougo/vimproc.vim', { 'for': 'typescript' }
-Plug 'maralla/completor-typescript', { 'for': 'typescript' }
-Plug 'maralla/completor.vim', { 'for': 'typescript' }
+Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
 Plug 'prettier/vim-prettier'
 Plug 'shime/vim-livedown'
 Plug 'junegunn/fzf'
@@ -56,11 +53,15 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'xolox/vim-lua-ftplugin'
 Plug 'xolox/vim-misc'
 Plug 'jxnblk/vim-mdx-js'
+Plug 'psf/black', { 'for': 'python' }
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 call plug#end()
 
 " ** Prettier **
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yml,*.yaml,*.html PrettierAsync
+" Temp remove Markdown
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yml,*.yaml,*.html PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yml,*.yaml,*.html PrettierAsync
 let g:prettier#quickfix_enabled = 0
 
 " ** Javascript **
@@ -76,6 +77,7 @@ let g:jsx_ext_required = 0
 
 " ** Typescript **
 let g:tsuquyomi_disable_quickfix = 1
+let g:coc_global_extensions = [ 'coc-tsserver' ]
 augroup filetype_typescript
     au!
     au BufRead,BufNewFile *.ts set filetype=typescript
@@ -96,12 +98,13 @@ let g:tagbar_type_typescript = {
 \ }
 
 " ** PYTHON **
-"Run Flake8 Python Linter"
 augroup filetype_python
     au!
     au FileType python set omnifunc=pythoncomplete#Complete
 augroup END
-let g:flake8_show_in_gutter=1
+let g:black_linelength=79
+" Run black autoformatter "
+autocmd BufWritePre *.py execute ':Black'
 
 " ** RUBY (Puppet & Vagrant) **
 augroup filetype_ruby

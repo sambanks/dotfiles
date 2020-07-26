@@ -23,7 +23,6 @@ export PATH="/home/sbanks/bin:$PATH"
 #Android studio sdk
 export PATH="$PATH:/home/sbanks/Android/Sdk/platform-tools"
 
-source <(kubectl completion bash)
 complete -C '/usr/bin/aws_completer' aws
 
 # Add openssl path for python (qutebrowser) ssl support
