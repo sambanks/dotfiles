@@ -54,7 +54,6 @@ Plug 'xolox/vim-lua-ftplugin'
 Plug 'xolox/vim-misc'
 Plug 'jxnblk/vim-mdx-js'
 Plug 'psf/black', { 'for': 'python' }
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 call plug#end()
 
 " ** Prettier **
