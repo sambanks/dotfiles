@@ -20,6 +20,8 @@ set noshowmode
 set noequalalways
 set termguicolors
 set autochdir
+set noeb vb t_vb=
+au GUIEnter * set vb t_vb=
 
 " ** Vim Plug **
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -54,6 +56,11 @@ Plug 'xolox/vim-lua-ftplugin'
 Plug 'xolox/vim-misc'
 Plug 'jxnblk/vim-mdx-js'
 Plug 'psf/black', { 'for': 'python' }
+Plug 'TaDaa/vimade'
+Plug 'pprovost/vim-ps1'
+Plug 'thaerkh/vim-workspace'
+Plug 'OmniSharp/omnisharp-vim'
+" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 call plug#end()
 
 " ** Prettier **
@@ -102,6 +109,7 @@ augroup filetype_python
     au FileType python set omnifunc=pythoncomplete#Complete
 augroup END
 let g:black_linelength=79
+let g:black_quiet=1
 " Run black autoformatter "
 autocmd BufWritePre *.py execute ':Black'
 
@@ -188,3 +196,7 @@ let g:rainbow_active = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+" Workspace Management "
+let g:workspace_session_directory = $HOME . '/.vim/sessions/'
+
