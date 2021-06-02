@@ -32,14 +32,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-plug'
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
-Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
-Plug 'Shougo/vimproc.vim', { 'for': 'typescript' }
 Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
-Plug 'prettier/vim-prettier'
 Plug 'shime/vim-livedown'
 Plug 'junegunn/fzf'
 Plug 'scrooloose/nerdcommenter'
@@ -47,77 +40,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
-Plug 'airblade/vim-gitgutter'
-Plug 'majutsushi/tagbar'
 Plug 'tmhedberg/SimpylFold'
-Plug 'w0rp/ale'
-Plug 'arcticicestudio/nord-vim'
-Plug 'xolox/vim-lua-ftplugin'
-Plug 'xolox/vim-misc'
-Plug 'jxnblk/vim-mdx-js'
-Plug 'psf/black', { 'for': 'python' }
-Plug 'TaDaa/vimade'
+Plug 'morhetz/gruvbox'
 Plug 'pprovost/vim-ps1'
-Plug 'thaerkh/vim-workspace'
 Plug 'OmniSharp/omnisharp-vim'
-" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 call plug#end()
-
-" ** Prettier **
-let g:prettier#autoformat = 0
-" Temp remove Markdown
-" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yml,*.yaml,*.html PrettierAsync
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yml,*.yaml,*.html PrettierAsync
-let g:prettier#quickfix_enabled = 0
 
 " ** Javascript **
 augroup filetype_js
     au!
     au FileType javascript setlocal ts=2 sw=2
-augroup END
-
-" Check for ES6 Unused Imports"
-nnoremap <leader>ji :w<CR>:call clearmatches()<CR>:let cmd = system('unused -v true ' . expand('%'))<CR>:exec cmd<CR>
-" Check jsx in js files "
-let g:jsx_ext_required = 0
-
-" ** Typescript **
-let g:tsuquyomi_disable_quickfix = 1
-let g:coc_global_extensions = [ 'coc-tsserver' ]
-augroup filetype_typescript
-    au!
-    au BufRead,BufNewFile *.ts set filetype=typescript
-    au FileType typescript setlocal ts=2 sw=2
-augroup END
-let g:tagbar_type_typescript = {
-  \ 'ctagstype': 'typescript',
-  \ 'kinds': [
-    \ 'c:classes',
-    \ 'n:modules',
-    \ 'f:functions',
-    \ 'v:variables',
-    \ 'v:varlambdas',
-    \ 'm:members',
-    \ 'i:interfaces',
-    \ 'e:enums',
-  \ ]
-\ }
-
-" ** PYTHON **
-augroup filetype_python
-    au!
-    au FileType python set omnifunc=pythoncomplete#Complete
-augroup END
-let g:black_linelength=79
-let g:black_quiet=1
-" Run black autoformatter "
-autocmd BufWritePre *.py execute ':Black'
-
-" ** RUBY (Puppet & Vagrant) **
-augroup filetype_ruby
-    au!
-    au BufRead,BufNewFile Vagrantfile set filetype=ruby
-    au Filetype ruby setlocal ts=2 sw=2 expandtab
 augroup END
 
 " ** YAML **
@@ -144,8 +76,7 @@ augroup filetype_md
     au BufNewFile,BufReadPost *.mdx set filetype=markdown
 augroup END
 
-" ** Statusline **
-" Git info
+" ** Git status **
 function! GitInfo()
   let git = fugitive#head()
   if git != ''
@@ -176,9 +107,6 @@ function GitScroll(direction)
 endfunction
 
 " ** Keyboard Mappings **
-" Toggle Tagbar "
-map <Leader>t :TagbarToggle<CR>
-" Cycle through git history without jumping
 map <Leader>n :call GitScroll('n')<CR>
 map <Leader>p :call GitScroll('p')<CR>
 
@@ -188,15 +116,5 @@ autocmd BufWritePre * %s/\s\+$//e
 " Space before comments
 let NERDSpaceDelims=1
 " Pretty "
-colorscheme nord
-" Rainbow Brackets "
-let g:rainbow_active = 1
-
-" Ale "
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-" Workspace Management "
-let g:workspace_session_directory = $HOME . '/.vim/sessions/'
-
+set background=dark
+colorscheme gruvbox
