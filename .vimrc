@@ -18,7 +18,7 @@ set foldlevel=99
 set laststatus=2
 set noshowmode
 set noequalalways
-set termguicolors
+" set termguicolors
 set autochdir
 set noeb vb t_vb=
 au GUIEnter * set vb t_vb=
