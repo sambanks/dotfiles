@@ -7,8 +7,8 @@ set nobackup
 set nowritebackup
 set noswapfile
 set expandtab
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set autoindent
 set ignorecase smartcase
 set smartcase
@@ -21,6 +21,7 @@ set noequalalways
 " set termguicolors
 set autochdir
 set noeb vb t_vb=
+set colorcolumn=88
 au GUIEnter * set vb t_vb=
 
 " ** Vim Plug **
@@ -45,6 +46,9 @@ Plug 'morhetz/gruvbox'
 Plug 'pprovost/vim-ps1'
 Plug 'OmniSharp/omnisharp-vim'
 call plug#end()
+
+" ** Python **
+autocmd FileType python let b:coc_root_patterns = ['.env', '.venv']
 
 " ** Javascript **
 augroup filetype_js
