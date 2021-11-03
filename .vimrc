@@ -47,7 +47,11 @@ Plug 'pprovost/vim-ps1'
 Plug 'OmniSharp/omnisharp-vim'
 call plug#end()
 
+" * COC **
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-prettier', 'coc-python']
+
 " ** Python **
+" :CocInstall coc-pyright
 autocmd FileType python let b:coc_root_patterns = ['.env', '.venv']
 
 " ** Javascript **
@@ -55,6 +59,7 @@ augroup filetype_js
     au!
     au FileType javascript setlocal ts=2 sw=2
 augroup END
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " ** YAML **
 " Detect yaml

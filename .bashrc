@@ -114,5 +114,5 @@ fi
 
 # Add local bin for pip installed non-priv bins
 export PATH=$PATH:/home/sbanks/.local/bin
-export DISPLAY=$(dig +short `hostname`.jhg.com.au | head -n1):0.0
 set -o vi
+. "$HOME/.cargo/env"
