@@ -42,7 +42,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
 Plug 'tmhedberg/SimpylFold'
-Plug 'morhetz/gruvbox'
+Plug 'arcticicestudio/nord-vim'
 Plug 'pprovost/vim-ps1'
 Plug 'OmniSharp/omnisharp-vim'
 call plug#end()
@@ -126,4 +126,4 @@ autocmd BufWritePre * %s/\s\+$//e
 let NERDSpaceDelims=1
 " Pretty "
 set background=dark
-colorscheme gruvbox
+colorscheme nord
