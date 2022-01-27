@@ -29,9 +29,6 @@ local jira_widget = require('widgets.jira-widget.jira')
 local brightness_widget = require("widgets.brightness-widget.brightness")
 local volume_widget = require("widgets.volume-widget.volume")
 
--- Separator
-separator = wibox.widget.textbox(" |  ")
-
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -59,7 +56,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
+beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/sp/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "kitty"
@@ -69,24 +66,10 @@ editor_cmd = terminal .. " -e " .. editor
 -- Default modkey.
 modkey = "Mod4"
 
--- Table of layouts to cover with awful.layout.inc, order matters.
+-- Table of layouts to cover with awful.layout.inc
+-- Removed all options to lock in tiling permanently
 awful.layout.layouts = {
     awful.layout.suit.tile,
-    -- awful.layout.suit.floating,
-    -- awful.layout.suit.tile.left,
-    -- awful.layout.suit.tile.bottom,
-    -- awful.layout.suit.tile.top,
-    -- awful.layout.suit.fair,
-    -- awful.layout.suit.fair.horizontal,
-    -- awful.layout.suit.spiral,
-    -- awful.layout.suit.spiral.dwindle,
-    -- awful.layout.suit.max,
-    -- awful.layout.suit.max.fullscreen,
-    -- awful.layout.suit.magnifier,
-    -- awful.layout.suit.corner.nw,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
 }
 -- }}}
 
@@ -137,28 +120,6 @@ local taglist_buttons = gears.table.join(
                     awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
                 )
 
--- local tasklist_buttons = gears.table.join(
-                     -- awful.button({ }, 1, function (c)
-                                              -- if c == client.focus then
-                                                  -- c.minimized = true
-                                              -- else
-                                                  -- c:emit_signal(
-                                                      -- "request::activate",
-                                                      -- "tasklist",
-                                                      -- {raise = true}
-                                                  -- )
-                                              -- end
-                                          -- end),
-                     -- awful.button({ }, 3, function()
-                                              -- awful.menu.client_list({ theme = { width = 250 } })
-                                          -- end),
-                     -- awful.button({ }, 4, function ()
-                                              -- awful.client.focus.byidx(1)
-                                          -- end),
-                     -- awful.button({ }, 5, function ()
-                                              -- awful.client.focus.byidx(-1)
-                                          -- end))
-
 local function set_wallpaper(s)
     -- Wallpaper
     if beautiful.wallpaper then
@@ -200,51 +161,39 @@ awful.screen.connect_for_each_screen(function(s)
         buttons = taglist_buttons
     }
 
-    -- Create a tasklist widget
-    -- s.mytasklist = awful.widget.tasklist {
-        -- screen  = s,
-        -- filter  = awful.widget.tasklist.filter.currenttags,
-        -- buttons = tasklist_buttons
-    -- }
-
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", height = 50, screen = s, bg = beautiful.bg_normal .. "0" })
+    s.mywibox = awful.wibar({ position = "top", height = 50, screen = s, bg = beautiful.bg_normal .. "20"  })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
+            mylauncher,
             s.mytaglist,
-            separator,
-            spotify_widget({
-              max_length  = -1,
-              font        = 'JetBrains 7'
-            }),
+            wibox.widget.textbox(themes_path),
         },
         {
             layout = wibox.layout.fixed.horizontal,
             s.mypromptbox,
-            -- s.mytasklist, -- Middle widget
-            -- wibox.widget.base.make_widget(),
         },
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            spacing = 20,
+            spotify_widget({
+              max_length  = -1,
+              font        = 'JetBrains 7'
+            }),
             wibox.widget.systray(),
-            separator,
             cpu_widget(),
-            separator,
             ram_widget(),
-            separator,
             batteryarc_widget({
               font                  = 'JetBrains 7',
               path_to_icons         = './',
               warning_msg_position  = 'top_right',
 
             }),
-            separator,
             todo_widget(),
-            separator,
             brightness_widget({
               type          = 'arc',
               program       = 'xbacklight',
@@ -254,12 +203,10 @@ awful.screen.connect_for_each_screen(function(s)
               tooltip       = true,
               timeout       = 1,
             }),
-            separator,
             volume_widget({
               widget_type   = 'arc',
               icon_dir      = '/usr/share/icons/Arc/status/symbolic/',
             }),
-            separator,
             mytextclock,
         },
     }

@@ -21,6 +21,7 @@ set noequalalways
 set termguicolors
 set autochdir
 set noeb vb t_vb=
+set encoding=utf8
 " set colorcolumn=88
 au GUIEnter * set vb t_vb=
 
@@ -33,7 +34,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-plug'
-Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'shime/vim-livedown'
 Plug 'junegunn/fzf'
 Plug 'scrooloose/nerdcommenter'
@@ -45,6 +46,7 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'arcticicestudio/nord-vim'
 Plug 'pprovost/vim-ps1'
 Plug 'OmniSharp/omnisharp-vim'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " * COC **
@@ -118,6 +120,7 @@ endfunction
 " ** Keyboard Mappings **
 map <Leader>n :call GitScroll('n')<CR>
 map <Leader>p :call GitScroll('p')<CR>
+map <leader>e :CocCommand explorer<CR>
 
 " ** General **
 " Remove trailing whitespace "
