@@ -45,15 +45,20 @@ Plug 'tpope/vim-repeat'
 Plug 'tmhedberg/SimpylFold'
 Plug 'arcticicestudio/nord-vim'
 Plug 'pprovost/vim-ps1'
-Plug 'OmniSharp/omnisharp-vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'pearofducks/ansible-vim'
 call plug#end()
 
 " * COC **
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-prettier', 'coc-python']
+let g:coc_global_extensions = [ 'coc-json', 'coc-git', 'coc-prettier', 'coc-pyright', '@yaegassy/coc-ansible',
+  \ 'coc-clangd', 'coc-css', 'coc-eslint', 'coc-explorer', 'coc-html', 'coc-html-css-support',
+  \ 'coc-markdownlint', 'coc-markdown-preview-enhanced', 'coc-omnisharp', 'coc-powershell',
+  \ 'coc-pydocstring', 'coc-sh', 'coc-tsserver', 'coc-xml', 'coc-yaml', 'coc-snippets']
+
+" * Ansible **
+let g:coc_filetype_map = { 'yaml.ansible': 'ansible' }
 
 " ** Python **
-" :CocInstall coc-pyright
 autocmd FileType python let b:coc_root_patterns = ['.env', '.venv']
 
 " ** Javascript **
@@ -65,14 +70,14 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " ** YAML **
 " Detect yaml
-augroup filetype_eyaml
-    au!
-    au BufRead,BufNewFile *.eyaml set filetype=yaml
-    au BufRead,BufNewFile *.yaml set filetype=yaml
-    au BufRead,BufNewFile *.yml set filetype=yaml
-    au BufRead,BufNewFile *.yml.j2 set filetype=yaml
-    au FileType yaml setlocal ts=2 sw=2 expandtab
-augroup END
+" augroup filetype_eyaml
+    " au!
+    " au BufRead,BufNewFile *.eyaml set filetype=yaml
+    " au BufRead,BufNewFile *.yaml set filetype=yaml
+    " au BufRead,BufNewFile *.yml set filetype=yaml
+    " au BufRead,BufNewFile *.yml.j2 set filetype=yaml
+    " au FileType yaml setlocal ts=2 sw=2 expandtab
+" augroup END
 
 " ** JSON **
 augroup filetype_json
