@@ -161,6 +161,8 @@ awful.screen.connect_for_each_screen(function(s)
         buttons = taglist_buttons
     }
 
+    s.systray   = wibox.widget.systray()
+
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", height = 50, screen = s, bg = beautiful.bg_normal .. "20"  })
 
@@ -184,7 +186,6 @@ awful.screen.connect_for_each_screen(function(s)
               max_length  = -1,
               font        = 'JetBrains 7'
             }),
-            wibox.widget.systray(),
             cpu_widget(),
             ram_widget(),
             batteryarc_widget({
@@ -207,6 +208,7 @@ awful.screen.connect_for_each_screen(function(s)
               widget_type   = 'arc',
               icon_dir      = '/usr/share/icons/Arc/status/symbolic/',
             }),
+            wibox.layout.margin(s.systray, 0, 0, 13, 13),
             mytextclock,
         },
     }
