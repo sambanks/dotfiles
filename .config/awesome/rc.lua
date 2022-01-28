@@ -2,6 +2,7 @@
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
+-- {{{ Imports
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -28,6 +29,7 @@ local github_prs_widget = require("widgets.github-prs-widget")
 local jira_widget = require('widgets.jira-widget.jira')
 local brightness_widget = require("widgets.brightness-widget.brightness")
 local volume_widget = require("widgets.volume-widget.volume")
+-- }}}
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -84,7 +86,9 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
+                                    { "open terminal", terminal },
+                                    { "suspend", "systemctl suspend" },
+                                    { "hibernate", "systemctl hibernate" },
                                   }
                         })
 
@@ -99,8 +103,6 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
--- Create a textclock widget
-mytextclock = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -209,7 +211,7 @@ awful.screen.connect_for_each_screen(function(s)
               icon_dir      = '/usr/share/icons/Arc/status/symbolic/',
             }),
             wibox.layout.margin(s.systray, 0, 0, 13, 13),
-            mytextclock,
+            wibox.layout.margin(wibox.widget.textclock(), 0, 10, 0, 0),
         },
     }
 end)
