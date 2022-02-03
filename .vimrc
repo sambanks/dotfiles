@@ -47,6 +47,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'pprovost/vim-ps1'
 Plug 'ryanoasis/vim-devicons'
 Plug 'pearofducks/ansible-vim'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " * COC **
