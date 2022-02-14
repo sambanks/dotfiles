@@ -75,13 +75,6 @@ augroup filetype_json
     au FileType json setlocal ts=2 sw=2
 augroup END
 
-" ** Markdown **
-augroup filetype_md
-    au!
-    au BufNewFile,BufReadPost *.md set filetype=markdown
-    au BufNewFile,BufReadPost *.mdx set filetype=markdown
-augroup END
-
 " ** Git status **
 function! GitInfo()
   let git = fugitive#head()
@@ -119,7 +112,8 @@ map <leader>e :CocCommand explorer<CR>
 
 " ** General **
 " Remove trailing whitespace "
-autocmd BufWritePre * %s/\s\+$//e
+let whitspaceIgnore = ['markdown']
+autocmd BufWritePre * if index(whitspaceIgnore, &ft) < 0 | %s/\s\+$//e
 " Space before comments
 let NERDSpaceDelims=1
 " Pretty "
