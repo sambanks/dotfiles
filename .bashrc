@@ -21,5 +21,7 @@ export NVM_DIR="$HOME/.nvm"
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
 
-# Pass completions
+# Completions
 source /usr/share/bash-completion/completions/pass
+source /etc/bash_completion.d/git-prompt
+complete -C '/usr/local/bin/aws_completer' aws

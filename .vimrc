@@ -77,7 +77,7 @@ augroup END
 
 " ** Git status **
 function! GitInfo()
-  let git = fugitive#head()
+  let git = FugitiveHead()
   if git != ''
     return '  '.git.'  '
   else
