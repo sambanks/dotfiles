@@ -48,6 +48,7 @@ Plug 'pprovost/vim-ps1'
 Plug 'ryanoasis/vim-devicons'
 Plug 'pearofducks/ansible-vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'psf/black', { 'branch': 'stable' }
 call plug#end()
 
 " * COC **
