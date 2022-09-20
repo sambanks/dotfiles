@@ -18,7 +18,7 @@ set foldlevel=99
 set laststatus=2
 set noshowmode
 set noequalalways
-set termguicolors
+" set termguicolors
 set autochdir
 set noeb vb t_vb=
 set encoding=utf8
@@ -52,13 +52,29 @@ Plug 'psf/black', { 'branch': 'stable' }
 call plug#end()
 
 " * COC **
-let g:coc_global_extensions = [ 'coc-json', 'coc-git', 'coc-prettier', 'coc-pyright', '@yaegassy/coc-ansible',
-  \ 'coc-clangd', 'coc-css', 'coc-eslint', 'coc-explorer', 'coc-html', 'coc-html-css-support',
-  \ 'coc-markdownlint', 'coc-markdown-preview-enhanced', 'coc-omnisharp', 'coc-powershell',
-  \ 'coc-pydocstring', 'coc-sh', 'coc-tsserver', 'coc-xml', 'coc-yaml', 'coc-snippets']
-
-" * Ansible **
-let g:coc_filetype_map = { 'yaml.ansible': 'ansible' }
+let g:coc_global_extensions = [
+  \ '@yaegassy/coc-ansible',
+  \ 'coc-clangd',
+  \ 'coc-css',
+  \ 'coc-eslint',
+  \ 'coc-explorer',
+  \ 'coc-git',
+  \ 'coc-html',
+  \ 'coc-html-css-support',
+  \ 'coc-json',
+  \ 'coc-markdown-preview-enhanced',
+  \ 'coc-markdownlint',
+  \ 'coc-omnisharp',
+  \ 'coc-powershell',
+  \ 'coc-prettier',
+  \ 'coc-pydocstring',
+  \ 'coc-pyright',
+  \ 'coc-sh',
+  \ 'coc-snippets',
+  \ 'coc-tsserver',
+  \ 'coc-xml',
+  \ 'coc-yaml'
+\]
 
 " ** Python **
 autocmd FileType python let b:coc_root_patterns = ['.env', '.venv']
@@ -69,6 +85,7 @@ augroup filetype_js
     au FileType javascript setlocal ts=2 sw=2
 augroup END
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 
 " ** JSON **
 augroup filetype_json
@@ -119,4 +136,5 @@ autocmd BufWritePre * if index(whitspaceIgnore, &ft) < 0 | %s/\s\+$//e
 let NERDSpaceDelims=1
 " Pretty "
 set background=dark
+set t_Co=256
 colorscheme nord
