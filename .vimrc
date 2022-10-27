@@ -57,6 +57,10 @@ let g:coc_global_extensions = [ 'coc-json', 'coc-git', 'coc-prettier', 'coc-pyri
   \ 'coc-markdownlint', 'coc-markdown-preview-enhanced', 'coc-omnisharp', 'coc-powershell',
   \ 'coc-pydocstring', 'coc-sh', 'coc-tsserver', 'coc-xml', 'coc-yaml', 'coc-snippets']
 
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 " * Ansible **
 let g:coc_filetype_map = { 'yaml.ansible': 'ansible' }
 
