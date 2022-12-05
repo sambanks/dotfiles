@@ -13,7 +13,7 @@ set autoindent
 set ignorecase smartcase
 set smartcase
 set relativenumber
-set foldmethod=indent
+set foldmethod=manual
 set foldlevel=99
 set laststatus=2
 set noshowmode
@@ -22,7 +22,6 @@ set termguicolors
 set autochdir
 set noeb vb t_vb=
 set encoding=utf8
-" set colorcolumn=88
 au GUIEnter * set vb t_vb=
 
 " ** Vim Plug **
@@ -52,10 +51,29 @@ Plug 'psf/black', { 'branch': 'stable' }
 call plug#end()
 
 " * COC **
-let g:coc_global_extensions = [ 'coc-json', 'coc-git', 'coc-prettier', 'coc-pyright', '@yaegassy/coc-ansible',
-  \ 'coc-clangd', 'coc-css', 'coc-eslint', 'coc-explorer', 'coc-html', 'coc-html-css-support',
-  \ 'coc-markdownlint', 'coc-markdown-preview-enhanced', 'coc-omnisharp', 'coc-powershell',
-  \ 'coc-pydocstring', 'coc-sh', 'coc-tsserver', 'coc-xml', 'coc-yaml', 'coc-snippets']
+let g:coc_global_extensions = [ \
+  '@yaegassy/coc-ansible',
+  'coc-clangd', \
+  'coc-css', \
+  'coc-eslint', \
+  'coc-explorer', \
+  'coc-git', \
+  'coc-html', \
+  'coc-html-css-support', \
+  'coc-json', \
+  'coc-markdown-preview-enhanced', \
+  'coc-markdownlint', \
+  'coc-omnisharp', \
+  'coc-powershell', \
+  'coc-prettier', \
+  'coc-pydocstring', \
+  'coc-pyright', \
+  'coc-sh', \
+  'coc-snippets' \
+  'coc-tsserver', \
+  'coc-xml', \
+  'coc-yaml', \
+]
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
@@ -90,14 +108,14 @@ function! GitInfo()
 endfunction
 
 " Layout
-set statusline=                                 " Clear the statusline for when vimrc is reloaded
-set statusline+=\ %f\                           " File name
-set statusline+=%=                              " Right align
-set statusline+=%#Keyword#                      " Highlight colour
-set statusline+=%{GitInfo()}                    " Git info
-set statusline+=%#Keyword#                      " Highlight colour
-set statusline+=\ \ %l:%c                       " Line and column
-set statusline+=\ [%n]\                         " Buffer number
+set statusline=                " Clear the statusline for when vimrc is reloaded
+set statusline+=\ %f\          " File name
+set statusline+=%=             " Right align
+set statusline+=%#Keyword#     " Highlight colour
+set statusline+=%{GitInfo()}   " Git info
+set statusline+=%#Keyword#     " Highlight colour
+set statusline+=\ \ %l:%c      " Line and column
+set statusline+=\ [%n]\        " Buffer number
 
 " Cycle through git history without jumping
 function GitScroll(direction)
@@ -116,11 +134,14 @@ map <Leader>p :call GitScroll('p')<CR>
 map <leader>e :CocCommand explorer<CR>
 
 " ** General **
-" Remove trailing whitespace "
+
+" Remove trailing whitespace
 let whitspaceIgnore = ['markdown']
 autocmd BufWritePre * if index(whitspaceIgnore, &ft) < 0 | %s/\s\+$//e
+
 " Space before comments
 let NERDSpaceDelims=1
-" Pretty "
+
+" Pretty
 set background=dark
 colorscheme nord
