@@ -51,29 +51,28 @@ Plug 'psf/black', { 'branch': 'stable' }
 call plug#end()
 
 " * COC **
-let g:coc_global_extensions = [ \
-  '@yaegassy/coc-ansible',
-  'coc-clangd', \
-  'coc-css', \
-  'coc-eslint', \
-  'coc-explorer', \
-  'coc-git', \
-  'coc-html', \
-  'coc-html-css-support', \
-  'coc-json', \
-  'coc-markdown-preview-enhanced', \
-  'coc-markdownlint', \
-  'coc-omnisharp', \
-  'coc-powershell', \
-  'coc-prettier', \
-  'coc-pydocstring', \
-  'coc-pyright', \
-  'coc-sh', \
-  'coc-snippets' \
-  'coc-tsserver', \
-  'coc-xml', \
-  'coc-yaml', \
-]
+let g:coc_global_extensions = [ '@yaegassy/coc-ansible',
+  \ 'coc-clangd',
+  \ 'coc-css',
+  \ 'coc-eslint',
+  \ 'coc-explorer',
+  \ 'coc-git',
+  \ 'coc-html',
+  \ 'coc-html-css-support',
+  \ 'coc-json',
+  \ 'coc-markdown-preview-enhanced',
+  \ 'coc-markdownlint',
+  \ 'coc-omnisharp',
+  \ 'coc-powershell',
+  \ 'coc-prettier',
+  \ 'coc-pydocstring',
+  \ 'coc-pyright',
+  \ 'coc-sh',
+  \ 'coc-snippets',
+  \ 'coc-tsserver',
+  \ 'coc-xml',
+  \ 'coc-yaml',
+\ ]
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
