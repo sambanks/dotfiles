@@ -32,22 +32,23 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+Plug 'arcticicestudio/nord-vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'junegunn/fzf'
 Plug 'junegunn/vim-plug'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'shime/vim-livedown'
-Plug 'junegunn/fzf'
+Plug 'pearofducks/ansible-vim'
+Plug 'pprovost/vim-ps1'
+Plug 'psf/black', { 'branch': 'stable' }
+Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
+Plug 'sheerun/vim-polyglot'
+Plug 'shime/vim-livedown'
+Plug 'tmhedberg/SimpylFold'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-repeat'
-Plug 'tmhedberg/SimpylFold'
-Plug 'arcticicestudio/nord-vim'
-Plug 'pprovost/vim-ps1'
-Plug 'ryanoasis/vim-devicons'
-Plug 'pearofducks/ansible-vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'psf/black', { 'branch': 'stable' }
 call plug#end()
 
 " * COC **
