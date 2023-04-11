@@ -33,9 +33,12 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'arcticicestudio/nord-vim'
+Plug 'github/copilot.vim'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'hashivim/vim-terraform'
 Plug 'junegunn/fzf'
 Plug 'junegunn/vim-plug'
+Plug 'jvirtanen/vim-hcl'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pearofducks/ansible-vim'
 Plug 'pprovost/vim-ps1'
@@ -52,7 +55,8 @@ Plug 'tpope/vim-vinegar'
 call plug#end()
 
 " * COC **
-let g:coc_global_extensions = [ '@yaegassy/coc-ansible',
+let g:coc_global_extensions = [
+  \ '@yaegassy/coc-ansible',
   \ 'coc-clangd',
   \ 'coc-css',
   \ 'coc-eslint',
@@ -84,6 +88,8 @@ let g:coc_filetype_map = { 'yaml.ansible': 'ansible' }
 
 " ** Python **
 autocmd FileType python let b:coc_root_patterns = ['.env', '.venv']
+let g:black_linelength = 100
+
 
 " ** Javascript **
 augroup filetype_js
