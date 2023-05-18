@@ -93,7 +93,6 @@ let g:copilot_filetypes = {'yaml': v:true}
 autocmd FileType python let b:coc_root_patterns = ['.env', '.venv']
 let g:black_linelength = 100
 
-
 " ** Javascript **
 augroup filetype_js
     au!
