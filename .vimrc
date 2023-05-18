@@ -86,6 +86,9 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
 " * Ansible **
 let g:coc_filetype_map = { 'yaml.ansible': 'ansible' }
 
+" * Copilot **
+let g:copilot_filetypes = {'yaml': v:true}
+
 " ** Python **
 autocmd FileType python let b:coc_root_patterns = ['.env', '.venv']
 let g:black_linelength = 100
