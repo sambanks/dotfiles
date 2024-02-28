@@ -114,6 +114,5 @@ for bindir in "/opt/homebrew/opt/"*"/bin"; do export PATH=$bindir:$PATH; done
 for mandir in "/opt/homebrew/opt/"*"/libexec/gnuman"; do export MANPATH=$mandir:$MANPATH; done
 for mandir in "/opt/homebrew/opt/"*"/share/man/man1"; do export MANPATH=$mandir:$MANPATH; done
 export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
