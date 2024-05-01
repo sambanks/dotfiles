@@ -33,12 +33,10 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'arcticicestudio/nord-vim'
-Plug 'github/copilot.vim'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'github/copilot.vim'
 Plug 'hashivim/vim-terraform'
-Plug 'junegunn/fzf'
 Plug 'junegunn/vim-plug'
-Plug 'jvirtanen/vim-hcl'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pearofducks/ansible-vim'
 Plug 'pprovost/vim-ps1'
@@ -83,8 +81,67 @@ let g:coc_global_extensions = [
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" * Ansible **
-let g:coc_filetype_map = { 'yaml.ansible': 'ansible' }
+" GoTo code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s)
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap keys for applying refactor code actions
+nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+
+" Run the Code Lens action on the current line
+nmap <leader>cl  <Plug>(coc-codelens-action)
+
+" Remap <C-f> and <C-b> to scroll float windows/popups
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+
+" Add `:Format` command to format current buffer
+command! -nargs=0 Format :call CocActionAsync('format')
+
+" Add `:Fold` command to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer
+command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 " * Copilot **
 let g:copilot_filetypes = {'yaml': v:true}
@@ -98,13 +155,16 @@ augroup filetype_js
     au!
     au FileType javascript setlocal ts=2 sw=2
 augroup END
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+command! -nargs=0 Prettier :CocCommand prettier.formatFile --print-width 80
 
 " ** JSON **
 augroup filetype_json
     au!
     au FileType json setlocal ts=2 sw=2
 augroup END
+
+" ** Terraform **
+let g:terraform_fmt_on_save = 1
 
 " ** Git status **
 function! GitInfo()

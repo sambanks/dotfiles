@@ -74,6 +74,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+# plugins=(git vi-mode)
 plugins=(git zsh-dircolors-nord vi-mode)
 
 source $ZSH/oh-my-zsh.sh
@@ -113,6 +114,15 @@ for bindir in "/opt/homebrew/opt/"*"/libexec/gnubin"; do export PATH=$bindir:$PA
 for bindir in "/opt/homebrew/opt/"*"/bin"; do export PATH=$bindir:$PATH; done
 for mandir in "/opt/homebrew/opt/"*"/libexec/gnuman"; do export MANPATH=$mandir:$MANPATH; done
 for mandir in "/opt/homebrew/opt/"*"/share/man/man1"; do export MANPATH=$mandir:$MANPATH; done
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+
+# dircolors
+test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)
+alias ls='ls --color'
+
+# Dart Pub
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+
+# pyenv
+eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
