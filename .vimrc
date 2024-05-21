@@ -45,10 +45,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'shime/vim-livedown'
-Plug 'tmhedberg/SimpylFold'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 call plug#end()
 
@@ -155,7 +152,7 @@ augroup filetype_js
     au!
     au FileType javascript setlocal ts=2 sw=2
 augroup END
-command! -nargs=0 Prettier :CocCommand prettier.formatFile --print-width 80
+command! -nargs=0 Prettier :CocCommand prettier.formatFile --print-width 100
 
 " ** JSON **
 augroup filetype_json
