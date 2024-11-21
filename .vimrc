@@ -2,26 +2,26 @@
 set nocompatible
 filetype plugin indent on
 syntax on
-set autoread
-set nobackup
-set nowritebackup
-set noswapfile
-set expandtab
-set tabstop=2
-set shiftwidth=2
-set autoindent
-set ignorecase smartcase
-set smartcase
-set relativenumber
-set foldmethod=manual
-set foldlevel=99
-set laststatus=2
-set noshowmode
-set noequalalways
-set termguicolors
 set autochdir
-set noeb vb t_vb=
+set autoindent
+set autoread
 set encoding=utf8
+set expandtab
+set foldlevel=99
+set foldmethod=manual
+set ignorecase smartcase
+set laststatus=2
+set nobackup
+set noeb vb t_vb=
+set noequalalways
+set noshowmode
+set noswapfile
+set nowritebackup
+set relativenumber
+set shiftwidth=2
+set smartcase
+set tabstop=2
+set termguicolors
 au GUIEnter * set vb t_vb=
 
 " ** Vim Plug **
@@ -33,7 +33,6 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'arcticicestudio/nord-vim'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'github/copilot.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'junegunn/vim-plug'
@@ -142,6 +141,12 @@ command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.org
 
 " * Copilot **
 let g:copilot_filetypes = {'yaml': v:true}
+"option-]
+inoremap ‘ <Plug>(copilot-next)
+"option-[
+inoremap “ <Plug>(copilot-previous)
+"option-\
+inoremap « <Plug>(copilot-suggest)
 
 " ** Python **
 autocmd FileType python let b:coc_root_patterns = ['.env', '.venv']
@@ -152,7 +157,7 @@ augroup filetype_js
     au!
     au FileType javascript setlocal ts=2 sw=2
 augroup END
-command! -nargs=0 Prettier :CocCommand prettier.formatFile --print-width 100
+command! -nargs=0 Prettier :CocCommand prettier.formatFile --print-width 100 --tab-width 2
 
 " ** JSON **
 augroup filetype_json
@@ -162,6 +167,12 @@ augroup END
 
 " ** Terraform **
 let g:terraform_fmt_on_save = 1
+
+" ** Markdown **
+augroup filetype_markdown
+    au!
+    au FileType markdown setlocal ts=2 sw=2
+augroup END
 
 " ** Git status **
 function! GitInfo()
