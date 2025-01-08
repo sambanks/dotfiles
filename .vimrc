@@ -5,6 +5,7 @@ syntax on
 set autochdir
 set autoindent
 set autoread
+set backspace=indent,eol,start
 set encoding=utf8
 set expandtab
 set foldlevel=99
@@ -41,8 +42,8 @@ Plug 'pearofducks/ansible-vim'
 Plug 'pprovost/vim-ps1'
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'ryanoasis/vim-devicons'
+Plug 'sainnhe/everforest'
 Plug 'scrooloose/nerdcommenter'
-Plug 'sheerun/vim-polyglot'
 Plug 'shime/vim-livedown'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
@@ -220,4 +221,5 @@ let NERDSpaceDelims=1
 
 " Pretty
 set background=dark
-colorscheme nord
+colorscheme everforest
+let g:everforest_background = 'hard'
