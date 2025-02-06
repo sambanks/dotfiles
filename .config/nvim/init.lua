@@ -1,0 +1,6 @@
+require("config.keys")
+require("config.lazy")
+require("config.options")
+require("config.looks")
+require("config.statusline")
+require("config.term")

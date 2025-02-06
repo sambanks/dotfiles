@@ -1,6 +1,6 @@
 *
-!.gitignore
-!.vimrc
-!.tmux.conf
 !.bashrc
+!.config/**
+!.gitignore
 !.inputrc
+!.tmux.conf
