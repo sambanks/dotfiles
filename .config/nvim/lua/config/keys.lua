@@ -17,3 +17,19 @@ map('n', '<A-h>', '<C-w>h', opts)
 map('n', '<A-j>', '<C-w>j', opts)
 map('n', '<A-k>', '<C-w>k', opts)
 map('n', '<A-l>', '<C-w>l', opts)
+
+-- Handle LSP Diagnostics
+vim.api.nvim_set_keymap('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>y', ':lua CopyDiagnosticMessage()<CR>', opts)
+
+function CopyDiagnosticMessage()
+  local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line('.') - 1 })
+  if #diagnostics == 0 then
+    print("No diagnostic message at the current line.")
+    return
+  end
+
+  local message = diagnostics[1].message
+  vim.fn.setreg('+', message) -- Copy to system clipboard
+  print("Copied to clipboard: " .. message)
+end
