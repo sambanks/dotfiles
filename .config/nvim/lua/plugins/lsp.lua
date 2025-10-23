@@ -3,7 +3,6 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    "L3MON4D3/LuaSnip",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-nvim-lsp",
@@ -18,8 +17,6 @@ return {
     "stevearc/conform.nvim",
     "williamboman/mason-lspconfig.nvim",
     "williamboman/mason.nvim",
-    "zbirenbaum/copilot-cmp",
-    "zbirenbaum/copilot.lua",
   },
   config = function()
     require("mason").setup()
@@ -73,22 +70,6 @@ return {
     vim.lsp.config.ansiblels = {
       capabilities = capabilities,
     }
-
-    -- Copilot LSP configuration
-    require("copilot").setup({
-      capabilities = capabilities,
-      settings = {
-        copilot = {
-          panel = { enabled = false },
-          suggestion = { enabled = false },
-        },
-      },
-    })
-
-    -- Copilot completion configuration
-    require("copilot_cmp").setup({
-      capabilities = capabilities,
-    })
 
     -- TypeScript/JavaScript LSP configuration
     vim.lsp.config.ts_ls = {
@@ -205,7 +186,6 @@ return {
         end, { "i", "s" }),
       }),
       sources = cmp.config.sources({
-        { name = "copilot" },
         { name = "nvim_lsp" },
         { name = "buffer" },
         { name = "nvim_lua" },
