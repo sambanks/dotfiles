@@ -70,9 +70,9 @@ return {
     )
 
     -- Ansible LSP configuration
-    require("lspconfig").ansiblels.setup({
+    vim.lsp.config.ansiblels = {
       capabilities = capabilities,
-    })
+    }
 
     -- Copilot LSP configuration
     require("copilot").setup({
@@ -91,18 +91,45 @@ return {
     })
 
     -- TypeScript/JavaScript LSP configuration
-    require("lspconfig").ts_ls.setup({
+    vim.lsp.config.ts_ls = {
       capabilities = capabilities,
       init_options = {
         preferences = {
           disableSuggestions = true,
         },
       },
-    })
+    }
 
     -- Lua LSP configuration
-    require("lspconfig").lua_ls.setup({
+    vim.lsp.config.lua_ls = {
       capabilities = capabilities,
+      root_dir = function(fname)
+        local util = require("lspconfig.util")
+        -- Only attach to Lua projects with specific markers or nvim config
+        local lua_project_root = util.root_pattern(
+          ".luarc.json",
+          ".luarc.jsonc",
+          ".luacheckrc",
+          ".stylua.toml",
+          "stylua.toml",
+          "selene.toml",
+          "selene.yml"
+        )(fname)
+
+        if lua_project_root then
+          return lua_project_root
+        end
+
+        -- Check if we're in nvim config directory
+        if type(fname) == "string" and fname:match("%.config/nvim") then
+          local git_root = util.find_git_ancestor(fname)
+          if git_root and git_root:match("%.config/nvim") then
+            return git_root
+          end
+        end
+
+        return nil
+      end,
       settings = {
         Lua = {
           runtime = { version = "LuaJIT" },
@@ -110,10 +137,10 @@ return {
           workspace = { library = vim.api.nvim_get_runtime_file("", true) },
         },
       },
-    })
+    }
 
     -- Python LSP configuration (Pyright)
-    require("lspconfig").pyright.setup({
+    vim.lsp.config.pyright = {
       capabilities = capabilities,
       settings = {
         python = {
@@ -124,10 +151,10 @@ return {
           },
         },
       },
-    })
+    }
 
     -- Ruff LSP Configuration
-    require("lspconfig").ruff.setup({
+    vim.lsp.config.ruff = {
       capabilities = capabilities,
       settings = {
         ruff = {
@@ -135,17 +162,17 @@ return {
           fixAll = true,
         },
       },
-    })
+    }
 
     -- Terraform LSP configuration
-    require("lspconfig").terraformls.setup({
+    vim.lsp.config.terraformls = {
       capabilities = capabilities,
-    })
+    }
 
     -- TypeScript LSP configuration (ESLint)
-    require("lspconfig").eslint.setup({
+    vim.lsp.config.eslint = {
       capabilities = capabilities,
-    })
+    }
 
     -- Completion setup
     local cmp = require("cmp")
@@ -235,12 +262,12 @@ return {
               "html",
               "css"
             }, filetype) then
+          -- Use null-ls (Prettier) instead of LSP formatter
           vim.lsp.buf.format({
             async = false,
-            formatting_options = {
-              tabSize = 2,
-              insertSpaces = true,
-            },
+            filter = function(client)
+              return client.name == "null-ls"
+            end,
           })
         else
           vim.lsp.buf.format({

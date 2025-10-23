@@ -3,7 +3,7 @@
 #
 
 # GNU Coreutils
-PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+#PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -110,19 +110,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 # source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh # This loads a better vi mode
 # GNU
-for bindir in "/opt/homebrew/opt/"*"/libexec/gnubin"; do export PATH=$bindir:$PATH; done
-for bindir in "/opt/homebrew/opt/"*"/bin"; do export PATH=$bindir:$PATH; done
-for mandir in "/opt/homebrew/opt/"*"/libexec/gnuman"; do export MANPATH=$mandir:$MANPATH; done
-for mandir in "/opt/homebrew/opt/"*"/share/man/man1"; do export MANPATH=$mandir:$MANPATH; done
+# for bindir in "/opt/homebrew/opt/"*"/libexec/gnubin"; do export PATH=$bindir:$PATH; done
+# for bindir in "/opt/homebrew/opt/"*"/bin"; do export PATH=$bindir:$PATH; done
+# for mandir in "/opt/homebrew/opt/"*"/libexec/gnuman"; do export MANPATH=$mandir:$MANPATH; done
+# for mandir in "/opt/homebrew/opt/"*"/share/man/man1"; do export MANPATH=$mandir:$MANPATH; done
 
 # dircolors
 test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)
 alias ls='ls --color'
-
-# Dart Pub
-export PATH="$PATH":"$HOME/.pub-cache/bin"
-
-# pyenv
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
