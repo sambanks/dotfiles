@@ -204,9 +204,7 @@ return {
 
     -- Diagnostic configuration
     vim.diagnostic.config({
-      virtual_text = {
-        prefix = "●",
-      },
+      virtual_text = false,
       float = {
         focusable = false,
         style = "minimal",
@@ -214,8 +212,16 @@ return {
         source = "always",
       },
       signs = true,
+      severity_sort = true,
       underline = true,
       update_in_insert = false,
+    })
+
+    -- Show diagnostics in a float on cursor hold
+    vim.api.nvim_create_autocmd("CursorHold", {
+      callback = function()
+        vim.diagnostic.open_float(nil, { scope = "cursor" })
+      end,
     })
   end,
 }

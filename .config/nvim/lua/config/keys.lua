@@ -27,7 +27,10 @@ map('t', '<S-A-h>', '<C-\\><C-N>:tabprevious<CR>', opts)
 -- Rename tab
 vim.keymap.set('n', '<leader>tr', function()
   local name = vim.fn.input('Tab name: ')
-  if name ~= '' then vim.t.tab_name = name end
+  if name ~= '' then
+    vim.t.tab_name = name
+    vim.cmd('redrawtabline')
+  end
 end, opts)
 
 -- Handle LSP Diagnostics

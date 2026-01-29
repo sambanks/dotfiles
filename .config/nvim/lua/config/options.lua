@@ -7,6 +7,7 @@ vim.opt.smartcase = true
 vim.opt.smartindent = true
 vim.opt.softtabstop = 2
 vim.opt.swapfile = false
+vim.opt.updatetime = 1000
 vim.opt.tabstop = 2
 vim.opt.scrolloff = 2
 vim.opt.termguicolors = true
