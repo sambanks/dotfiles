@@ -2,6 +2,7 @@
 
 return {
   "neovim/nvim-lspconfig",
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-cmdline",
@@ -9,53 +10,30 @@ return {
     "hrsh7th/cmp-nvim-lua",
     "hrsh7th/cmp-path",
     "hrsh7th/nvim-cmp",
-    "j-hui/fidget.nvim",
-    "nvimtools/none-ls.nvim",
-    "mfussenegger/nvim-ansible",
-    "MunifTanjim/prettier.nvim",
-    "nvim-lua/plenary.nvim",
+    { "j-hui/fidget.nvim", opts = {} },
     "stevearc/conform.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "williamboman/mason.nvim",
+    { "williamboman/mason.nvim", opts = {} },
   },
   config = function()
-    require("mason").setup()
-    require("mason-lspconfig").setup({
-      automatic_installation = false,
-      ensure_installed = {
-        "ansiblels",
-        "bashls",
-        "eslint",
-        "lua_ls",
-        "marksman",
-        "pyright",
-        "ruff",
-        "terraformls",
-        "ts_ls",
-        "yamlls",
+
+    -- Setup conform.nvim for formatting (replaces deprecated null-ls)
+    require("conform").setup({
+      formatters_by_ft = {
+        javascript = { "prettier" },
+        typescript = { "prettier" },
+        javascriptreact = { "prettier" },
+        typescriptreact = { "prettier" },
+        json = { "prettier" },
+        yaml = { "prettier" },
+        markdown = { "prettier" },
+        html = { "prettier" },
+        css = { "prettier" },
+      },
+      format_on_save = {
+        timeout_ms = 2000,
+        lsp_fallback = true,
       },
     })
-
-    -- Setup none-ls
-    local null_ls = require("null-ls")
-    local null_opts = {
-      sources = {
-        null_ls.builtins.formatting.prettier.with({
-          filetypes = {
-            "javascript",
-            "typescript",
-            "javascriptreact",
-            "typescriptreact",
-            "json",
-            "yaml",
-            "markdown",
-            "html",
-            "css",
-          },
-        }),
-      },
-    }
-    null_ls.setup(null_opts)
 
     -- LSP capabilities for nvim-cmp
     local cmp_lsp = require("cmp_nvim_lsp")
@@ -86,7 +64,6 @@ return {
       capabilities = capabilities,
       root_dir = function(fname)
         local util = require("lspconfig.util")
-        -- Only attach to Lua projects with specific markers or nvim config
         local lua_project_root = util.root_pattern(
           ".luarc.json",
           ".luarc.jsonc",
@@ -101,7 +78,6 @@ return {
           return lua_project_root
         end
 
-        -- Check if we're in nvim config directory
         if type(fname) == "string" and fname:match("%.config/nvim") then
           local git_root = util.find_git_ancestor(fname)
           if git_root and git_root:match("%.config/nvim") then
@@ -115,7 +91,10 @@ return {
         Lua = {
           runtime = { version = "LuaJIT" },
           diagnostics = { globals = { "vim" } },
-          workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+          workspace = {
+            library = { vim.env.VIMRUNTIME },
+            checkThirdParty = false,
+          },
         },
       },
     }
@@ -150,10 +129,24 @@ return {
       capabilities = capabilities,
     }
 
-    -- TypeScript LSP configuration (ESLint)
+    -- ESLint LSP configuration
     vim.lsp.config.eslint = {
       capabilities = capabilities,
     }
+
+    -- Enable all configured LSP servers
+    vim.lsp.enable({
+      'ansiblels',
+      'bashls',
+      'eslint',
+      'lua_ls',
+      'marksman',
+      'pyright',
+      'ruff',
+      'terraformls',
+      'ts_ls',
+      'yamlls',
+    })
 
     -- Completion setup
     local cmp = require("cmp")
@@ -193,7 +186,6 @@ return {
       }),
     })
 
-    -- Set up completion for command-line mode
     cmp.setup.cmdline(":", {
       mapping = cmp.mapping.preset.cmdline(),
       sources = cmp.config.sources({
@@ -224,37 +216,6 @@ return {
       signs = true,
       underline = true,
       update_in_insert = false,
-    })
-
-    -- Format on save
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      callback = function()
-        local filetype = vim.bo.filetype
-        -- Use Prettier for supported filetypes
-        if vim.tbl_contains({
-              "javascript",
-              "typescript",
-              "javascriptreact",
-              "typescriptreact",
-              "json",
-              "yaml",
-              "markdown",
-              "html",
-              "css"
-            }, filetype) then
-          -- Use null-ls (Prettier) instead of LSP formatter
-          vim.lsp.buf.format({
-            async = false,
-            filter = function(client)
-              return client.name == "null-ls"
-            end,
-          })
-        else
-          vim.lsp.buf.format({
-            async = false,
-          })
-        end
-      end,
     })
   end,
 }

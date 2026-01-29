@@ -18,6 +18,12 @@ map('n', '<A-j>', '<C-w>j', opts)
 map('n', '<A-k>', '<C-w>k', opts)
 map('n', '<A-l>', '<C-w>l', opts)
 
+-- Switch tabs with shift + alt + hl
+map('n', '<S-A-l>', ':tabnext<CR>', opts)
+map('n', '<S-A-h>', ':tabprevious<CR>', opts)
+map('t', '<S-A-l>', '<C-\\><C-N>:tabnext<CR>', opts)
+map('t', '<S-A-h>', '<C-\\><C-N>:tabprevious<CR>', opts)
+
 -- Handle LSP Diagnostics
 vim.api.nvim_set_keymap('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 vim.api.nvim_set_keymap('n', '<leader>y', ':lua CopyDiagnosticMessage()<CR>', opts)

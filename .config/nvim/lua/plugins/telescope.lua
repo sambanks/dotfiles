@@ -4,17 +4,26 @@ return {
   tag = "0.1.8",
 
   dependencies = {
-    "nvim-lua/plenary.nvim"
+    "nvim-lua/plenary.nvim",
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+  },
+
+  cmd = "Telescope",
+  keys = {
+    { "<leader>ff", "<cmd>Telescope find_files<cr>" },
+    { "<leader>fg", "<cmd>Telescope grep_string<cr>" },
+    { "<leader>fh", "<cmd>Telescope help_tags<cr>" },
+    { "<leader>fb", "<cmd>Telescope buffers<cr>" },
+    { "<leader>fl", "<cmd>Telescope live_grep<cr>" },
   },
 
   config = function()
-    require('telescope').setup({})
-
-    local builtin = require('telescope.builtin')
-
-    vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-    vim.keymap.set('n', '<leader>fg', builtin.grep_string, {})
-    vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-    vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+    local telescope = require('telescope')
+    telescope.setup({
+      defaults = {
+        file_ignore_patterns = { "node_modules", ".git/" },
+      },
+    })
+    pcall(telescope.load_extension, 'fzf')
   end
 }
