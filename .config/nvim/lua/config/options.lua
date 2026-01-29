@@ -15,4 +15,3 @@ vim.opt.showtabline = 2
 vim.opt.cmdheight = 0
 vim.opt.numberwidth = 2
 vim.opt.signcolumn = 'number'
-vim.opt.wildmode = 'longest:full,full'
