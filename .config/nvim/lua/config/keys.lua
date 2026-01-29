@@ -24,6 +24,12 @@ map('n', '<S-A-h>', ':tabprevious<CR>', opts)
 map('t', '<S-A-l>', '<C-\\><C-N>:tabnext<CR>', opts)
 map('t', '<S-A-h>', '<C-\\><C-N>:tabprevious<CR>', opts)
 
+-- Rename tab
+vim.keymap.set('n', '<leader>tr', function()
+  local name = vim.fn.input('Tab name: ')
+  if name ~= '' then vim.t.tab_name = name end
+end, opts)
+
 -- Handle LSP Diagnostics
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
 

@@ -75,9 +75,12 @@ _G.custom_tabline = function()
     local buftype = vim.fn.getbufvar(bufnr, '&buftype')
     local is_active = (i == vim.fn.tabpagenr())
 
-    -- Format the filename
+    -- Use custom tab name if set
+    local tab_name = vim.fn.gettabvar(i, 'tab_name', '')
     local display_name
-    if buftype == 'terminal' then
+    if tab_name ~= '' then
+      display_name = tab_name
+    elseif buftype == 'terminal' then
       display_name = vim.fn.fnamemodify(bufname, ':t')
       if display_name:match('^term://') then
         display_name = 'zsh'
