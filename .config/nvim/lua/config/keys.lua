@@ -25,17 +25,16 @@ map('t', '<S-A-l>', '<C-\\><C-N>:tabnext<CR>', opts)
 map('t', '<S-A-h>', '<C-\\><C-N>:tabprevious<CR>', opts)
 
 -- Handle LSP Diagnostics
-vim.api.nvim_set_keymap('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>y', ':lua CopyDiagnosticMessage()<CR>', opts)
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
 
-function CopyDiagnosticMessage()
+local function copy_diagnostic()
   local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line('.') - 1 })
   if #diagnostics == 0 then
     print("No diagnostic message at the current line.")
     return
   end
-
-  local message = diagnostics[1].message
-  vim.fn.setreg('+', message) -- Copy to system clipboard
-  print("Copied to clipboard: " .. message)
+  vim.fn.setreg('+', diagnostics[1].message)
+  print("Copied to clipboard: " .. diagnostics[1].message)
 end
+
+vim.keymap.set('n', '<leader>y', copy_diagnostic, opts)

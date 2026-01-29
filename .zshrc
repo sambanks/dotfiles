@@ -1,5 +1,8 @@
+# -- Path --
+export PATH="$HOME/.local/bin:$PATH"
+
 # -- Prompt --
-PROMPT='%B%F{yellow}%~%f %(?.%F{green}.%F{red})❯%f%b '
+PROMPT='%F{yellow}%~%f '
 
 # -- Vi mode --
 bindkey -v
