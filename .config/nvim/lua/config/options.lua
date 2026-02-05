@@ -1,4 +1,3 @@
-vim.opt.autochdir = true
 vim.opt.equalalways = false
 vim.opt.expandtab = true
 vim.opt.relativenumber = true
