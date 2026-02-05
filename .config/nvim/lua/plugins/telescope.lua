@@ -11,10 +11,10 @@ return {
   cmd = "Telescope",
   keys = {
     { "<leader>ff", "<cmd>Telescope find_files<cr>" },
-    { "<leader>fg", "<cmd>Telescope grep_string<cr>" },
+    { "<leader>fg", function() require('telescope.builtin').grep_string({ cwd = vim.fn.getcwd() }) end },
     { "<leader>fh", "<cmd>Telescope help_tags<cr>" },
     { "<leader>fb", "<cmd>Telescope buffers<cr>" },
-    { "<leader>fl", "<cmd>Telescope live_grep<cr>" },
+    { "<leader>fl", function() require('telescope.builtin').live_grep({ cwd = vim.fn.getcwd() }) end },
   },
 
   config = function()
