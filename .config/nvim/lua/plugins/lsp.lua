@@ -127,6 +127,14 @@ return {
     -- Terraform LSP configuration
     vim.lsp.config.terraformls = {
       capabilities = capabilities,
+      root_dir = function(bufnr)
+        local fname = vim.api.nvim_buf_get_name(bufnr)
+        -- Don't attach to fugitive buffers
+        if fname:match("^fugitive://") then
+          return nil
+        end
+        return vim.fs.dirname(vim.fs.find({'.terraform', '.git'}, { upward = true, path = fname })[1])
+      end,
     }
 
     -- ESLint LSP configuration
